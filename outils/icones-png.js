@@ -9,7 +9,7 @@ import { chromium } from '@playwright/test';
 
 const SITE = fileURLToPath(new URL('../site/', import.meta.url));
 const favicon = readFileSync(`${SITE}favicon.svg`, 'utf8');
-// iOS : carré blanc sans filet, l'arc un peu plus petit pour respirer dans le masque arrondi.
+// iOS : carré blanc sans filet, la roue un peu plus petite pour respirer dans le masque arrondi.
 const pourIos = favicon
   .replace(/<rect[^>]*\/>/, '<rect width="64" height="64" fill="#ffffff"/>')
   .replace(

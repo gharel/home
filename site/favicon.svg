@@ -1,40 +1,40 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <!-- L'arc-en-ciel des outils Skazy Formation sur fond blanc : une bande par outil, du dehors
-       vers le dedans (Quiz, Mini-jeux, Vigie, Atelier d’exercices IA, Comprendre l'IA,
-       Prompthèque), chacune dans le dégradé de son favicon. -->
+  <!-- La roue des outils Skazy Formation sur fond blanc : un arc par outil, dans le dégradé de
+       son favicon, en partant du haut dans le sens des aiguilles d'une montre (Quiz, Mini-jeux,
+       Vigie, Atelier d’exercices IA, Comprendre l'IA, Prompthèque). -->
   <defs>
-    <linearGradient id="rouge" x1="0" y1="0" x2="1" y2="0">
+    <linearGradient id="rouge" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#ff6557"/>
       <stop offset="1" stop-color="#d70d40"/>
     </linearGradient>
-    <linearGradient id="orange" x1="0" y1="0" x2="1" y2="0">
+    <linearGradient id="orange" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#ffa839"/>
       <stop offset="1" stop-color="#ec5900"/>
     </linearGradient>
-    <linearGradient id="jaune" x1="0" y1="0" x2="1" y2="0">
+    <linearGradient id="jaune" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#f9e03f"/>
       <stop offset="1" stop-color="#ef9d05"/>
     </linearGradient>
-    <linearGradient id="vert" x1="0" y1="0" x2="1" y2="0">
+    <linearGradient id="vert" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#7ce963"/>
       <stop offset="1" stop-color="#02934a"/>
     </linearGradient>
-    <linearGradient id="bleu" x1="0" y1="0" x2="1" y2="0">
+    <linearGradient id="bleu" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#29c9fa"/>
       <stop offset="1" stop-color="#135ae4"/>
     </linearGradient>
-    <linearGradient id="violet" x1="0" y1="0" x2="1" y2="0">
+    <linearGradient id="violet" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#d578f0"/>
       <stop offset="1" stop-color="#701fe6"/>
     </linearGradient>
   </defs>
   <rect x="0.75" y="0.75" width="62.5" height="62.5" rx="13.25" fill="#ffffff" stroke="#dee2e6" stroke-width="1.5"/>
-  <g fill="none" stroke-width="3.9">
-    <path stroke="url(#rouge)" d="M6.85 45.5a25.15 25.15 0 0 1 50.3 0"/>
-    <path stroke="url(#orange)" d="M10.55 45.5a21.45 21.45 0 0 1 42.9 0"/>
-    <path stroke="url(#jaune)" d="M14.25 45.5a17.75 17.75 0 0 1 35.5 0"/>
-    <path stroke="url(#vert)" d="M17.95 45.5a14.05 14.05 0 0 1 28.1 0"/>
-    <path stroke="url(#bleu)" d="M21.65 45.5a10.35 10.35 0 0 1 20.7 0"/>
-    <path stroke="url(#violet)" d="M25.35 45.5a6.65 6.65 0 0 1 13.3 0"/>
+  <g fill="none" stroke-width="10">
+    <path stroke="url(#rouge)" d="M33.13 13.53A18.5 18.5 0 0 1 47.43 21.79"/>
+    <path stroke="url(#orange)" d="M48.56 23.75A18.5 18.5 0 0 1 48.56 40.25"/>
+    <path stroke="url(#jaune)" d="M47.43 42.21A18.5 18.5 0 0 1 33.13 50.47"/>
+    <path stroke="url(#vert)" d="M30.87 50.47A18.5 18.5 0 0 1 16.57 42.21"/>
+    <path stroke="url(#bleu)" d="M15.44 40.25A18.5 18.5 0 0 1 15.44 23.75"/>
+    <path stroke="url(#violet)" d="M16.57 21.79A18.5 18.5 0 0 1 30.87 13.53"/>
   </g>
 </svg>

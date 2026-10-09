@@ -8,7 +8,7 @@ Une page d’accueil statique qui présente les six outils Skazy Formation et y 
 
 ```
 site/index.html                 La page : bandeau, héros (accès direct), une carte par outil, pied
-site/favicon.svg                Favicon et pastille du bandeau : l'arc-en-ciel des six outils sur fond blanc
+site/favicon.svg                Favicon et pastille du bandeau : la roue des six outils sur fond blanc (un arc par outil, dans le dégradé de son favicon)
 site/favicon-32.png             Dérivé du SVG par npm run icones
 site/apple-touch-icon.png       Dérivé du SVG par npm run icones (fond blanc plein, 180 px)
 site/assets/css/charte.css      Jetons du design system (clair et sombre) et couleurs des outils : seul fichier où une couleur est écrite
