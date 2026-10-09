@@ -40,6 +40,7 @@
       }
     </script>
     <script type="module" src="assets/js/theme.js"></script>
+    <script type="module" src="assets/js/haut-de-page.js"></script>
   </head>
   <body>
     <svg aria-hidden="true" width="0" height="0" style="position: absolute">
@@ -89,6 +90,11 @@
           d="M192 384c53 0 96 43 96 96 0 17.7-14.3 32-32 32L32 512c-17.7 0-32-14.3-32-32 0-53 43-96 96-96l96 0zM544 32c35.3 0 64 28.7 64 64l0 288c0 33.1-25.2 60.4-57.5 63.7l-6.5 .3-211.1 0c-5.1-24.2-16.3-46.1-32.1-64l51.2 0 0-32c0-17.7 14.3-32 32-32l96 0c17.7 0 32 14.3 32 32l0 32 32 0 0-288-352 0 0 57.3c-14.8-6-31-9.3-48-9.3-5.4 0-10.8 .3-16 1l0-49c0-35.3 28.7-64 64-64l352 0zM144 352a80 80 0 1 1 0-160 80 80 0 1 1 0 160z"
         />
       </symbol>
+      <symbol id="i-arrow-up" viewBox="0 0 384 512">
+        <path
+          d="M214.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 109.3 160 480c0 17.7 14.3 32 32 32s32-14.3 32-32l0-370.7 105.4 105.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"
+        />
+      </symbol>
       <symbol id="i-briefcase" viewBox="0 0 512 512">
         <path
           d="M200 48l112 0c4.4 0 8 3.6 8 8l0 40-128 0 0-40c0-4.4 3.6-8 8-8zm-56 8l0 40-80 0C28.7 96 0 124.7 0 160l0 96 512 0 0-96c0-35.3-28.7-64-64-64l-80 0 0-40c0-30.9-25.1-56-56-56L200 0c-30.9 0-56 25.1-56 56zM512 304l-192 0 0 16c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32l0-16-192 0 0 112c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-112z"
@@ -100,36 +106,38 @@
 
     <header class="bandeau">
       <div class="bandeau__interieur">
-        <a
-          class="bandeau__logo"
-          href="https://formation.skazy.nc"
-          target="_blank"
-          rel="noopener"
-          title="Site de Skazy Formation (nouvel onglet)"
-        >
-          <img
-            class="logo logo--clair"
-            src="assets/img/logo-skazy-formation.svg"
-            alt="Skazy Formation"
-            width="109"
-            height="36"
-          />
-          <img
-            class="logo logo--sombre"
-            src="assets/img/logo-skazy-formation-blanc.svg"
-            alt="Skazy Formation"
-            width="109"
-            height="36"
-          />
-        </a>
-        <p class="bandeau__nom">
+        <a class="bandeau__nom" href="./" aria-current="page">
           <img class="bandeau__pastille" src="favicon.svg" width="28" height="28" alt="" />
           <span class="bandeau__nom-texte">Les outils</span>
-        </p>
+        </a>
         <div class="bandeau__actions">
           <button type="button" class="bouton-icone" id="bouton-theme" hidden>
             <svg class="icone" aria-hidden="true"><use href="#i-circle-half-stroke" /></svg>
           </button>
+          <span class="bandeau__filet" aria-hidden="true"></span>
+          <a
+            class="bandeau__logo"
+            href="https://formation.skazy.nc"
+            target="_blank"
+            rel="noopener"
+            aria-label="Site de Skazy Formation (nouvel onglet)"
+            title="Site de Skazy Formation (nouvel onglet)"
+          >
+            <img
+              class="logo logo--clair"
+              src="assets/img/logo-skazy-formation.svg"
+              alt=""
+              width="109"
+              height="36"
+            />
+            <img
+              class="logo logo--sombre"
+              src="assets/img/logo-skazy-formation-blanc.svg"
+              alt=""
+              width="109"
+              height="36"
+            />
+          </a>
         </div>
       </div>
     </header>
@@ -139,7 +147,7 @@
         <div class="heros__interieur">
           <div class="heros__texte">
             <p class="surtitre">Skazy Formation&nbsp;· Nouvelle-Calédonie</p>
-            <h1 id="titre-accueil">
+            <h1 id="titre-accueil" tabindex="-1">
               Tous les outils <span class="insecable">Skazy Formation</span>, au même endroit
             </h1>
             <p class="heros__chapo">
@@ -590,5 +598,10 @@
         </p>
       </div>
     </footer>
+
+    <button type="button" class="haut-de-page" id="haut-de-page" hidden>
+      <svg class="icone" aria-hidden="true"><use href="#i-arrow-up" /></svg>
+      <span class="hors-ecran">Remonter en haut de la page</span>
+    </button>
   </body>
 </html>

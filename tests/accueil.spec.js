@@ -56,6 +56,37 @@ test('le titre suit la règle commune « Nom · Skazy Formation »', async ({ pa
   await expect(page.locator('.bandeau__pastille')).toHaveAttribute('src', 'favicon.svg');
 });
 
+test('bandeau commun : le nom à gauche, le logo Skazy Formation en dernier à droite', async ({
+  page,
+}) => {
+  await ouvrir(page);
+  const nom = page.locator('a.bandeau__nom');
+  await expect(nom).toHaveAttribute('href', './');
+  await expect(nom).toHaveAttribute('aria-current', 'page');
+  const dernier = page.locator('.bandeau__interieur :is(a, button):visible').last();
+  await expect(dernier).toHaveClass(/bandeau__logo/);
+  await expect(dernier).toHaveAttribute('href', 'https://formation.skazy.nc');
+  await expect(dernier).toHaveAttribute('target', '_blank');
+  await expect(dernier).toHaveAccessibleName('Site de Skazy Formation (nouvel onglet)');
+  const boites = await Promise.all([nom.boundingBox(), dernier.boundingBox()]);
+  expect(boites[0].x).toBeLessThan(boites[1].x);
+});
+
+test('le bouton « Remonter en haut » apparaît après défilement et ramène en haut', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await ouvrir(page);
+  const bouton = page.getByRole('button', { name: 'Remonter en haut de la page' });
+  await expect(bouton).toBeHidden();
+  await page.evaluate(() => scrollTo(0, document.documentElement.scrollHeight));
+  await expect(bouton).toBeVisible();
+  await bouton.click();
+  await expect.poll(() => page.evaluate(() => scrollY)).toBe(0);
+  await expect(page.locator('#titre-accueil')).toBeFocused();
+  await expect(bouton).toBeHidden();
+});
+
 test('les six outils, dans l’ordre de l’arc-en-ciel, avec leur favicon', async ({ page }) => {
   await ouvrir(page);
   const cartes = page.locator('.carte');

@@ -53,6 +53,10 @@ button {
   outline: 3px solid var(--primaire);
   outline-offset: 2px;
 }
+/* Titres et sections où le code place le focus (tabindex="-1") : pas d'anneau. */
+[tabindex='-1']:focus {
+  outline: none;
+}
 
 [hidden] {
   display: none !important;
@@ -119,22 +123,30 @@ button {
   display: none;
 }
 
-/* Signature commune aux outils Skazy Formation : logo, filet, pastille (le favicon), nom. */
+/* Bandeau commun aux outils Skazy Formation : à gauche la pastille (le favicon) et le nom, lien
+   vers l'accueil de l'outil ; à droite les actions, un filet et le logo, lien vers le site. */
 .bandeau__nom {
   display: flex;
   align-items: center;
+  padding: 6px 10px 6px 4px;
+  margin-left: -4px;
+  border-radius: var(--rayon-pilule);
   font-size: 1.0625rem;
   font-weight: 700;
   color: var(--texte-fort);
   line-height: 1.2;
+  text-decoration: none;
   white-space: nowrap;
+  transition: background var(--transition-rapide);
 }
-.bandeau__nom::before {
-  content: '';
+.bandeau__nom:hover {
+  background: var(--surface-2);
+}
+.bandeau__filet {
   flex: none;
   width: 1px;
   height: 24px;
-  margin-right: var(--e-4);
+  margin-inline: var(--e-2);
   background: var(--bord);
 }
 .bandeau__pastille {
@@ -475,6 +487,55 @@ button {
   transform: translateX(3px);
 }
 
+/* ── Remonter en haut (même bouton que dans les outils) ─ */
+.hors-ecran {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.haut-de-page {
+  position: fixed;
+  right: var(--e-6);
+  bottom: calc(var(--e-6) + env(safe-area-inset-bottom, 0px));
+  z-index: 15;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--primaire-fonce);
+  color: var(--sur-primaire);
+  box-shadow: var(--ombre-lg);
+  font-size: 1.1rem;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition:
+    opacity var(--transition-rapide),
+    transform var(--transition-rapide),
+    visibility 0s linear 150ms,
+    background var(--transition-rapide);
+}
+.haut-de-page.est-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition:
+    opacity var(--transition-rapide),
+    transform var(--transition-rapide),
+    visibility 0s,
+    background var(--transition-rapide);
+}
+.haut-de-page:hover {
+  background: var(--primaire-texte);
+}
+
 /* ── Pied de page ────────────────────────────────────── */
 .pied {
   margin-top: var(--e-16);
@@ -551,11 +612,14 @@ button {
   .bandeau__interieur {
     gap: var(--e-2);
   }
-  .bandeau__nom {
-    margin-left: var(--e-1);
+  .bandeau__filet {
+    margin-inline: var(--e-1);
   }
-  .bandeau__nom::before {
-    margin-right: var(--e-3);
+  .haut-de-page {
+    right: var(--e-4);
+    bottom: calc(var(--e-4) + env(safe-area-inset-bottom, 0px));
+    width: 44px;
+    height: 44px;
   }
   .bandeau__logo .logo {
     height: 30px;

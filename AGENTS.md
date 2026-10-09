@@ -14,6 +14,7 @@ site/apple-touch-icon.png       Dérivé du SVG par npm run icones (fond blanc p
 site/assets/css/charte.css      Jetons du design system (clair et sombre) et couleurs des outils : seul fichier où une couleur est écrite
 site/assets/css/accueil.css     Mise en page
 site/assets/js/theme.js         Bouton du thème (système, clair, sombre), gardé dans localStorage
+site/assets/js/haut-de-page.js  Bouton « Remonter en haut », visible après 1,2 écran de défilement
 site/assets/img/outils/*.svg    Copies exactes des favicons des six outils (ne pas les modifier ici)
 site/assets/fonts/              Georama (woff2), comme dans les autres outils
 outils/dev.js                   Serveur local du dossier site/ (port 4180, refuse un port occupé)
@@ -35,7 +36,7 @@ tests/accueil.spec.js           Playwright : ordre des outils, liens, images, th
 - **En français** : identifiants, commentaires, textes affichés, messages de commit (Conventional Commits : `feat(cartes): …`, `fix: …`).
 - **Charte Skazy Formation** (design system Claude Design, copie locale dans `exercices-ia/src/styles/`) : Georama, vert `#50967c` (texte blanc seulement sur `--primaire-fonce`), boutons en pilule, cartes de 16 px à barre de 6 px, badges en majuscules, héros sombre, pas d’emoji (icônes Font Awesome Free en sprite SVG dans `index.html`, décoratives).
 - **L’arc-en-ciel des outils** : Quiz rouge, Mini-jeux orange, Vigie jaune, Atelier d’exercices IA vert, Comprendre l’IA bleu, Prompthèque violet. Toujours dans cet ordre. Les dégradés (`--<couleur>-a` → `--<couleur>-b`) sont ceux des favicons ; `--<couleur>-texte` est la teinte de texte au contraste AA (assombrie en clair, éclaircie en sombre). Si un outil change de favicon, recopier le fichier dans `site/assets/img/outils/` et ses deux couleurs dans `charte.css` (et dans `site/favicon.svg`).
-- **Signature et titre** : bandeau « logo Skazy Formation │ pastille (le favicon) │ nom », le logo seul est un lien vers https://formation.skazy.nc (nouvel onglet). Titre d’onglet « Les outils · Skazy Formation ».
+- **Bandeau commun des outils** (harmonisé le 2026-10-09, le même dans les six outils) : à gauche le bouton « Accueil » de l’outil s’il existe, puis la pastille (le favicon) et le nom, en un lien vers l’accueil de l’outil ; à droite les actions de l’outil, le lien « Les outils » (vers https://gharel.github.io/home/ ; absent ici puisque c’est cette page), un filet et le logo Skazy Formation en dernier, lien vers https://formation.skazy.nc (nouvel onglet). Bouton « Remonter en haut de la page » sur les pages longues (rond, en bas à droite, après 1,2 écran de défilement). Titre d’onglet « Les outils · Skazy Formation ».
 - **Un nouvel outil** : une entrée dans le lanceur du héros, une carte (même gabarit, badge = un verbe), une ligne dans `OUTILS` de `tests/accueil.spec.js` et dans le tableau du README.
 - **Typographie** : espace insécable (`&nbsp;`) avant `? ! ; :` et le point médian `·`, après un nombre suivi de son unité ; un nom composé (Mini-jeux, Nouvelle-Calédonie) va dans `<span class="insecable">`. Le test « typographie » le vérifie.
 - **Vérifier** à 1280 × 720, 1920 × 1080, 820 px, 390 px et 360 px, en clair et en sombre : pas de défilement horizontal, aucun texte coupé, axe sans violation (`npm test`).

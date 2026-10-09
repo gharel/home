@@ -16,6 +16,8 @@ La page d’accueil qui présente les six outils de Skazy Formation, avec un acc
 - Charte du design system **Skazy Formation** (Claude Design), reprise de l’Atelier d’exercices IA : police Georama, vert `#50967c`, cartes à barre de couleur de 6 px, badges en majuscules, héros sombre.
 - Thème clair et sombre (celui du système, ou choisi avec le bouton du bandeau), pensé pour le téléphone.
 - Chaque outil garde la couleur de son favicon (dégradé de l’arc-en-ciel Skazy Formation). Le favicon de l’accueil est la roue des outils sur fond blanc : un anneau de six arcs, un par outil dans le dégradé de son favicon, du rouge du Quiz (en haut) au violet de la Prompthèque, dans le sens des aiguilles d’une montre.
+- Bandeau commun à tous les outils : à gauche la pastille et le nom (lien vers l’accueil), à droite les actions, un filet et le logo Skazy Formation (lien vers formation.skazy.nc). Les six outils y ajoutent le lien « Les outils » vers cette page.
+- Bouton « Remonter en haut » sur les pages longues.
 - Titre d’onglet selon la règle commune des outils : « Les outils · Skazy Formation ».
 - Aucune dépendance à l’exécution, aucun CDN : HTML, CSS et un petit module JavaScript pour le thème.
 
