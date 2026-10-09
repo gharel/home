@@ -1,0 +1,25 @@
+{
+  "name": "outils-skazy-formation",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Les outils Skazy Formation : page d'accueil qui présente les six outils (Quiz, Mini-jeux, Vigie, Atelier d'exercices IA, Comprendre l'IA, Prompthèque)",
+  "type": "module",
+  "scripts": {
+    "dev": "node outils/dev.js",
+    "icones": "node outils/icones-png.js",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "validate:html": "html-validate site/index.html",
+    "check": "npm run format:check && npm run validate:html",
+    "test": "playwright test"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.63.0",
+    "html-validate": "^11.16.2",
+    "prettier": "^3.9.9"
+  }
+}

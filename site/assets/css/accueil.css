@@ -1,0 +1,594 @@
+/* Mise en page de l'accueil : bandeau, héros sombre et accès direct, cartes des outils, pied. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-padding-top: calc(var(--hauteur-bandeau) + var(--e-4));
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--fond);
+  color: var(--texte);
+  font-family: var(--police);
+  font-size: var(--texte-base);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-wrap: pretty;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--texte-fort);
+  line-height: 1.2;
+  margin: 0;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--primaire-texte);
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--primaire);
+  outline-offset: 2px;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* Un nom composé (Mini-jeux, Nouvelle-Calédonie) ne se coupe pas au trait d'union. */
+.insecable {
+  white-space: nowrap;
+}
+
+.icone {
+  width: 1em;
+  height: 1em;
+  flex: none;
+  fill: currentColor;
+  vertical-align: -0.125em;
+}
+
+.lien-evitement {
+  position: absolute;
+  left: var(--e-4);
+  top: -100px;
+  z-index: 100;
+  background: var(--primaire-fonce);
+  color: var(--sur-primaire);
+  padding: var(--e-2) var(--e-4);
+  border-radius: var(--rayon-pilule);
+  font-weight: 600;
+}
+.lien-evitement:focus {
+  top: var(--e-2);
+}
+
+/* ── Bandeau ─────────────────────────────────────────── */
+.bandeau {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  padding-top: env(safe-area-inset-top, 0px);
+  background: var(--surface);
+  border-bottom: 1px solid var(--bord);
+}
+
+.bandeau__interieur {
+  max-width: var(--largeur);
+  margin: 0 auto;
+  padding-inline: var(--e-6);
+  height: var(--hauteur-bandeau);
+  display: flex;
+  align-items: center;
+  gap: var(--e-4);
+}
+
+.bandeau__logo {
+  display: flex;
+  flex: none;
+  border-radius: var(--rayon-md);
+}
+.bandeau__logo .logo {
+  height: 36px;
+  width: auto;
+}
+.logo--sombre {
+  display: none;
+}
+
+/* Signature commune aux outils Skazy Formation : logo, filet, pastille (le favicon), nom. */
+.bandeau__nom {
+  display: flex;
+  align-items: center;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--texte-fort);
+  line-height: 1.2;
+  white-space: nowrap;
+}
+.bandeau__nom::before {
+  content: '';
+  flex: none;
+  width: 1px;
+  height: 24px;
+  margin-right: var(--e-4);
+  background: var(--bord);
+}
+.bandeau__pastille {
+  flex: none;
+  width: 28px;
+  height: 28px;
+}
+.bandeau__nom-texte {
+  margin-left: 10px;
+}
+
+.bandeau__actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--e-2);
+}
+
+.bouton-icone {
+  display: inline-grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  flex: none;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--texte);
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: background var(--transition-rapide);
+}
+.bouton-icone:hover {
+  background: var(--surface-2);
+}
+
+/* ── Héros (scène sombre du design system) ───────────── */
+.heros {
+  position: relative;
+  background: var(--scene);
+  color: var(--scene-texte);
+}
+.heros :focus-visible {
+  outline-color: var(--scene-accent);
+}
+/* L'arc-en-ciel des outils : six segments, chacun dans le dégradé de son favicon. Un seul
+   dégradé à arrêts francs, pour qu'aucun filet n'apparaisse entre deux segments. */
+.heros::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 6px;
+  background: linear-gradient(
+    90deg,
+    var(--rouge-a) 0%,
+    var(--rouge-b) 16.667%,
+    var(--orange-a) 16.667%,
+    var(--orange-b) 33.333%,
+    var(--jaune-a) 33.333%,
+    var(--jaune-b) 50%,
+    var(--vert-a) 50%,
+    var(--vert-b) 66.667%,
+    var(--bleu-a) 66.667%,
+    var(--bleu-b) 83.333%,
+    var(--violet-a) 83.333%,
+    var(--violet-b) 100%
+  );
+}
+
+.heros__interieur {
+  max-width: var(--largeur);
+  margin: 0 auto;
+  padding: clamp(2.5rem, 6vw, 4.5rem) var(--e-6) calc(clamp(2.5rem, 6vw, 4.5rem) + 6px);
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  align-items: center;
+  gap: var(--e-12);
+}
+
+.surtitre {
+  margin-bottom: var(--e-3);
+  font-size: var(--texte-xs);
+  font-weight: 700;
+  letter-spacing: var(--interlettre-tres-large);
+  text-transform: uppercase;
+  color: var(--scene-accent);
+}
+
+.heros h1 {
+  color: var(--scene-texte);
+  font-size: clamp(2rem, 4.2vw, 3.25rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.heros__chapo {
+  margin-top: var(--e-5);
+  max-width: 60ch;
+  color: var(--scene-doux);
+  font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
+  line-height: 1.6;
+}
+
+/* Accès direct : les six pastilles, comme sur l'écran d'accueil d'un téléphone. */
+.lanceur__titre {
+  margin-bottom: var(--e-3);
+  font-size: var(--texte-xs);
+  font-weight: 700;
+  letter-spacing: var(--interlettre-tres-large);
+  text-transform: uppercase;
+  color: var(--scene-doux);
+}
+
+.lanceur__liste {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--e-3);
+}
+
+.lanceur__lien {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--e-3);
+  height: 100%;
+  padding: var(--e-5) var(--e-2) var(--e-4);
+  border: 1px solid var(--scene-bord);
+  border-radius: var(--rayon-xl);
+  background: var(--scene-2);
+  color: var(--scene-texte);
+  font-size: var(--texte-sm);
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: center;
+  text-decoration: none;
+  text-wrap: balance;
+  transition:
+    transform var(--transition-rapide),
+    background var(--transition-rapide);
+}
+.lanceur__lien:hover {
+  transform: translateY(-3px);
+  background: var(--scene-3);
+}
+
+.pastille {
+  flex: none;
+  border-radius: 22%;
+}
+.lanceur .pastille {
+  width: 56px;
+  height: 56px;
+  box-shadow: 0 6px 16px rgb(0 0 0 / 35%);
+}
+
+/* ── Les outils ──────────────────────────────────────── */
+.outils {
+  max-width: var(--largeur);
+  margin: 0 auto;
+  padding: var(--e-12) var(--e-6) 0;
+}
+
+.outils__entete {
+  display: grid;
+  gap: var(--e-2);
+  margin-bottom: var(--e-8);
+}
+.outils__entete h2 {
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+.outils__entete p {
+  max-width: 72ch;
+  color: var(--texte-doux);
+}
+
+.grille {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--e-6);
+}
+
+/* Carte d'un outil (TrainingCard du design system) : barre de 6 px dans son dégradé. */
+.carte {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--surface);
+  border-radius: var(--rayon-xl);
+  box-shadow: var(--ombre-md);
+  overflow: hidden;
+  transition:
+    transform var(--transition-rapide),
+    box-shadow var(--transition-rapide);
+}
+.carte:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--ombre-lg);
+}
+.carte:has(.carte__lien:focus-visible) {
+  outline: 3px solid var(--outil-texte);
+  outline-offset: 3px;
+}
+
+.carte__barre {
+  height: 6px;
+  flex: none;
+  background: linear-gradient(90deg, var(--outil-a), var(--outil-b));
+}
+
+.carte__corps {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-4);
+  padding: var(--e-6);
+}
+
+.carte__haut {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--e-3);
+}
+.carte .pastille {
+  width: 52px;
+  height: 52px;
+  box-shadow: var(--ombre-sm);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: var(--rayon-pilule);
+  background: var(--outil-pale);
+  color: var(--outil-texte);
+  font-size: var(--texte-xs);
+  font-weight: 800;
+  letter-spacing: var(--interlettre-tres-large);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.carte__titre {
+  font-size: var(--texte-xl);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+.carte__lien {
+  color: var(--texte-fort);
+  text-decoration: none;
+}
+.carte__lien::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.carte__lien:focus-visible {
+  outline: none;
+}
+
+.carte__accroche {
+  color: var(--texte);
+  line-height: 1.6;
+}
+
+.carte__points {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--e-2);
+  color: var(--texte-doux);
+  font-size: var(--texte-sm);
+  line-height: 1.5;
+}
+.carte__points li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--e-2);
+}
+.carte__points .icone {
+  margin-top: 0.25em;
+  color: var(--outil-texte);
+}
+
+.carte__pied {
+  margin-top: auto;
+  padding-top: var(--e-4);
+  border-top: 1px solid var(--bord);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--e-3) var(--e-4);
+}
+.carte__infos {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--e-1);
+  color: var(--texte-doux);
+  font-size: var(--texte-xs);
+  font-weight: 600;
+}
+.carte__infos li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.carte__ouvrir {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--outil-texte);
+  font-weight: 700;
+  white-space: nowrap;
+}
+.carte__ouvrir .icone {
+  transition: transform var(--transition-rapide);
+}
+.carte:hover .carte__ouvrir .icone {
+  transform: translateX(3px);
+}
+
+/* ── Pied de page ────────────────────────────────────── */
+.pied {
+  margin-top: var(--e-16);
+  border-top: 1px solid var(--bord);
+  background: var(--surface);
+}
+.pied__interieur {
+  max-width: var(--largeur);
+  margin: 0 auto;
+  padding: var(--e-8) var(--e-6) calc(var(--e-8) + env(safe-area-inset-bottom, 0px));
+  display: grid;
+  gap: var(--e-2);
+  color: var(--texte-doux);
+  font-size: var(--texte-sm);
+}
+.pied strong {
+  color: var(--texte-fort);
+}
+.lien-pied {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ── Thème sombre : logo blanc ───────────────────────── */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .logo--clair {
+    display: none;
+  }
+  :root:not([data-theme='light']) .logo--sombre {
+    display: block;
+  }
+}
+:root[data-theme='dark'] .logo--clair {
+  display: none;
+}
+:root[data-theme='dark'] .logo--sombre {
+  display: block;
+}
+
+/* ── Écrans moyens et petits ─────────────────────────── */
+@media (max-width: 1100px) {
+  .grille {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 960px) {
+  .heros__interieur {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--e-10);
+  }
+  .lanceur__liste {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .lanceur__liste {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .grille {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--e-5);
+  }
+}
+
+@media (max-width: 640px) {
+  .bandeau__interieur,
+  .heros__interieur,
+  .outils,
+  .pied__interieur {
+    padding-inline: var(--e-4);
+  }
+  .bandeau__interieur {
+    gap: var(--e-2);
+  }
+  .bandeau__nom {
+    margin-left: var(--e-1);
+  }
+  .bandeau__nom::before {
+    margin-right: var(--e-3);
+  }
+  .bandeau__logo .logo {
+    height: 30px;
+  }
+  .bandeau__pastille {
+    width: 24px;
+    height: 24px;
+  }
+  .lanceur__liste {
+    gap: var(--e-2);
+  }
+  .lanceur__lien {
+    padding: var(--e-4) var(--e-1) var(--e-3);
+    gap: var(--e-2);
+    font-size: 0.8125rem;
+  }
+  .lanceur .pastille {
+    width: 48px;
+    height: 48px;
+  }
+  .outils {
+    padding-top: var(--e-10);
+  }
+  .outils__entete {
+    margin-bottom: var(--e-6);
+  }
+  .carte__corps {
+    padding: var(--e-5);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

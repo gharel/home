@@ -1,0 +1,594 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Les outils · Skazy Formation</title>
+    <meta
+      name="description"
+      content="Les six outils de Skazy Formation : Quiz, Mini-jeux, Vigie, Atelier d’exercices IA, Comprendre l’IA et Prompthèque."
+    />
+    <!-- Outils réservés aux stagiaires et à l'équipe : la page n'apparaît pas dans les moteurs de recherche. -->
+    <meta name="robots" content="noindex" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1f1f1f" media="(prefers-color-scheme: dark)" />
+    <meta property="og:title" content="Les outils · Skazy Formation" />
+    <meta
+      property="og:description"
+      content="Quiz, Mini-jeux, Vigie, Atelier d’exercices IA, Comprendre l’IA et Prompthèque, au même endroit."
+    />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link
+      rel="preload"
+      href="assets/fonts/georama-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="assets/css/charte.css" />
+    <link rel="stylesheet" href="assets/css/accueil.css" />
+    <script>
+      // Thème choisi, appliqué avant l'affichage pour éviter un éclair de la mauvaise couleur.
+      try {
+        const theme = JSON.parse(localStorage.getItem('skazy-outils:theme'));
+        if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
+      } catch {
+        // stockage indisponible : thème du système
+      }
+    </script>
+    <script type="module" src="assets/js/theme.js"></script>
+  </head>
+  <body>
+    <svg aria-hidden="true" width="0" height="0" style="position: absolute">
+      <!-- Icônes Font Awesome Free 7.3.1 (style solid), licence CC BY 4.0 : https://fontawesome.com/license/free -->
+      <symbol id="i-circle-half-stroke" viewBox="0 0 512 512">
+        <path
+          d="M448 256c0-106-86-192-192-192l0 384c106 0 192-86 192-192zM0 256a256 256 0 1 1 512 0 256 256 0 1 1 -512 0z"
+        />
+      </symbol>
+      <symbol id="i-sun" viewBox="0 0 576 512">
+        <path
+          d="M288-32c8.4 0 16.3 4.4 20.6 11.7L364.1 72.3 468.9 46c8.2-2 16.9 .4 22.8 6.3S500 67 498 75.1l-26.3 104.7 92.7 55.5c7.2 4.3 11.7 12.2 11.7 20.6s-4.4 16.3-11.7 20.6L471.7 332.1 498 436.8c2 8.2-.4 16.9-6.3 22.8S477 468 468.9 466l-104.7-26.3-55.5 92.7c-4.3 7.2-12.2 11.7-20.6 11.7s-16.3-4.4-20.6-11.7L211.9 439.7 107.2 466c-8.2 2-16.8-.4-22.8-6.3S76 445 78 436.8l26.2-104.7-92.6-55.5C4.4 272.2 0 264.4 0 256s4.4-16.3 11.7-20.6L104.3 179.9 78 75.1c-2-8.2 .3-16.8 6.3-22.8S99 44 107.2 46l104.7 26.2 55.5-92.6 1.8-2.6c4.5-5.7 11.4-9.1 18.8-9.1zm0 144a144 144 0 1 0 0 288 144 144 0 1 0 0-288zm0 240a96 96 0 1 1 0-192 96 96 0 1 1 0 192z"
+        />
+      </symbol>
+      <symbol id="i-moon" viewBox="0 0 512 512">
+        <path
+          d="M256 0C114.6 0 0 114.6 0 256S114.6 512 256 512c68.8 0 131.3-27.2 177.3-71.4 7.3-7 9.4-17.9 5.3-27.1s-13.7-14.9-23.8-14.1c-4.9 .4-9.8 .6-14.8 .6-101.6 0-184-82.4-184-184 0-72.1 41.5-134.6 102.1-164.8 9.1-4.5 14.3-14.3 13.1-24.4S322.6 8.5 312.7 6.3C294.4 2.2 275.4 0 256 0z"
+        />
+      </symbol>
+      <symbol id="i-check" viewBox="0 0 448 512">
+        <path
+          d="M434.8 70.1c14.3 10.4 17.5 30.4 7.1 44.7l-256 352c-5.5 7.6-14 12.3-23.4 13.1s-18.5-2.7-25.1-9.3l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l101.5 101.5 234-321.7c10.4-14.3 30.4-17.5 44.7-7.1z"
+        />
+      </symbol>
+      <symbol id="i-lock" viewBox="0 0 384 512">
+        <path
+          d="M128 96l0 64 128 0 0-64c0-35.3-28.7-64-64-64s-64 28.7-64 64zM64 160l0-64C64 25.3 121.3-32 192-32S320 25.3 320 96l0 64c35.3 0 64 28.7 64 64l0 224c0 35.3-28.7 64-64 64L64 512c-35.3 0-64-28.7-64-64L0 224c0-35.3 28.7-64 64-64z"
+        />
+      </symbol>
+      <symbol id="i-lock-open" viewBox="0 0 576 512">
+        <path
+          d="M384 96c0-35.3 28.7-64 64-64s64 28.7 64 64l0 32c0 17.7 14.3 32 32 32s32-14.3 32-32l0-32c0-70.7-57.3-128-128-128S320 25.3 320 96l0 64-160 0c-35.3 0-64 28.7-64 64l0 224c0 35.3 28.7 64 64 64l256 0c35.3 0 64-28.7 64-64l0-224c0-35.3-28.7-64-64-64l-32 0 0-64z"
+        />
+      </symbol>
+      <symbol id="i-arrow-right" viewBox="0 0 512 512">
+        <path
+          d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-105.4 105.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"
+        />
+      </symbol>
+      <symbol id="i-users" viewBox="0 0 640 512">
+        <path
+          d="M320 16a104 104 0 1 1 0 208 104 104 0 1 1 0-208zM96 88a72 72 0 1 1 0 144 72 72 0 1 1 0-144zM0 416c0-70.7 57.3-128 128-128 12.8 0 25.2 1.9 36.9 5.4-32.9 36.8-52.9 85.4-52.9 138.6l0 16c0 11.4 2.4 22.2 6.7 32L32 480c-17.7 0-32-14.3-32-32l0-32zm521.3 64c4.3-9.8 6.7-20.6 6.7-32l0-16c0-53.2-20-101.8-52.9-138.6 11.7-3.5 24.1-5.4 36.9-5.4 70.7 0 128 57.3 128 128l0 32c0 17.7-14.3 32-32 32l-86.7 0zM472 160a72 72 0 1 1 144 0 72 72 0 1 1 -144 0zM160 432c0-88.4 71.6-160 160-160s160 71.6 160 160l0 16c0 17.7-14.3 32-32 32l-256 0c-17.7 0-32-14.3-32-32l0-16z"
+        />
+      </symbol>
+      <symbol id="i-chalkboard-user" viewBox="0 0 640 512">
+        <path
+          d="M192 384c53 0 96 43 96 96 0 17.7-14.3 32-32 32L32 512c-17.7 0-32-14.3-32-32 0-53 43-96 96-96l96 0zM544 32c35.3 0 64 28.7 64 64l0 288c0 33.1-25.2 60.4-57.5 63.7l-6.5 .3-211.1 0c-5.1-24.2-16.3-46.1-32.1-64l51.2 0 0-32c0-17.7 14.3-32 32-32l96 0c17.7 0 32 14.3 32 32l0 32 32 0 0-288-352 0 0 57.3c-14.8-6-31-9.3-48-9.3-5.4 0-10.8 .3-16 1l0-49c0-35.3 28.7-64 64-64l352 0zM144 352a80 80 0 1 1 0-160 80 80 0 1 1 0 160z"
+        />
+      </symbol>
+      <symbol id="i-briefcase" viewBox="0 0 512 512">
+        <path
+          d="M200 48l112 0c4.4 0 8 3.6 8 8l0 40-128 0 0-40c0-4.4 3.6-8 8-8zm-56 8l0 40-80 0C28.7 96 0 124.7 0 160l0 96 512 0 0-96c0-35.3-28.7-64-64-64l-80 0 0-40c0-30.9-25.1-56-56-56L200 0c-30.9 0-56 25.1-56 56zM512 304l-192 0 0 16c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32l0-16-192 0 0 112c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-112z"
+        />
+      </symbol>
+    </svg>
+
+    <a class="lien-evitement" href="#outils">Aller aux outils</a>
+
+    <header class="bandeau">
+      <div class="bandeau__interieur">
+        <a
+          class="bandeau__logo"
+          href="https://formation.skazy.nc"
+          target="_blank"
+          rel="noopener"
+          title="Site de Skazy Formation (nouvel onglet)"
+        >
+          <img
+            class="logo logo--clair"
+            src="assets/img/logo-skazy-formation.svg"
+            alt="Skazy Formation"
+            width="109"
+            height="36"
+          />
+          <img
+            class="logo logo--sombre"
+            src="assets/img/logo-skazy-formation-blanc.svg"
+            alt="Skazy Formation"
+            width="109"
+            height="36"
+          />
+        </a>
+        <p class="bandeau__nom">
+          <img class="bandeau__pastille" src="favicon.svg" width="28" height="28" alt="" />
+          <span class="bandeau__nom-texte">Les outils</span>
+        </p>
+        <div class="bandeau__actions">
+          <button type="button" class="bouton-icone" id="bouton-theme" hidden>
+            <svg class="icone" aria-hidden="true"><use href="#i-circle-half-stroke" /></svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="heros" aria-labelledby="titre-accueil">
+        <div class="heros__interieur">
+          <div class="heros__texte">
+            <p class="surtitre">Skazy Formation&nbsp;· Nouvelle-Calédonie</p>
+            <h1 id="titre-accueil">
+              Tous les outils <span class="insecable">Skazy Formation</span>, au même endroit
+            </h1>
+            <p class="heros__chapo">
+              Animez vos séances avec le Quiz et les <span class="insecable">Mini-jeux</span>,
+              faites pratiquer l’IA avec l’Atelier d’exercices, Comprendre l’IA et la Prompthèque,
+              et suivez les appels d’offres avec Vigie.
+            </p>
+          </div>
+
+          <nav class="lanceur" aria-labelledby="titre-lanceur">
+            <p class="lanceur__titre" id="titre-lanceur">Accès direct</p>
+            <ul class="lanceur__liste">
+              <li>
+                <a class="lanceur__lien" href="https://gharel.github.io/quiz/">
+                  <img
+                    class="pastille"
+                    src="assets/img/outils/quiz.svg"
+                    width="56"
+                    height="56"
+                    alt=""
+                  />
+                  Quiz
+                </a>
+              </li>
+              <li>
+                <a class="lanceur__lien" href="https://gharel.github.io/jeu-formation/">
+                  <img
+                    class="pastille"
+                    src="assets/img/outils/mini-jeux.svg"
+                    width="56"
+                    height="56"
+                    alt=""
+                  />
+                  Mini-jeux
+                </a>
+              </li>
+              <li>
+                <a class="lanceur__lien" href="https://gharel.github.io/scraping/">
+                  <img
+                    class="pastille"
+                    src="assets/img/outils/vigie.svg"
+                    width="56"
+                    height="56"
+                    alt=""
+                  />
+                  Vigie
+                </a>
+              </li>
+              <li>
+                <a class="lanceur__lien" href="https://gharel.github.io/exercices-ia/">
+                  <img
+                    class="pastille"
+                    src="assets/img/outils/atelier-exercices-ia.svg"
+                    width="56"
+                    height="56"
+                    alt=""
+                  />
+                  Exercices IA
+                </a>
+              </li>
+              <li>
+                <a class="lanceur__lien" href="https://gharel.github.io/simulateur-ia/">
+                  <img
+                    class="pastille"
+                    src="assets/img/outils/comprendre-ia.svg"
+                    width="56"
+                    height="56"
+                    alt=""
+                  />
+                  Comprendre l’IA
+                </a>
+              </li>
+              <li>
+                <a class="lanceur__lien" href="https://gharel.github.io/prompts/">
+                  <img
+                    class="pastille"
+                    src="assets/img/outils/promptheque.svg"
+                    width="56"
+                    height="56"
+                    alt=""
+                  />
+                  Prompthèque
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </section>
+
+      <section class="outils" id="outils" aria-labelledby="titre-outils" tabindex="-1">
+        <div class="outils__entete">
+          <h2 id="titre-outils">Ce que fait chaque outil</h2>
+          <p>
+            Chaque outil a sa couleur, celle de son icône&nbsp;: les six forment l’arc-en-ciel de
+            Skazy Formation, du rouge du Quiz au violet de la Prompthèque.
+          </p>
+        </div>
+
+        <ul class="grille">
+          <li>
+            <article class="carte" data-couleur="rouge">
+              <div class="carte__barre"></div>
+              <div class="carte__corps">
+                <div class="carte__haut">
+                  <img
+                    class="pastille"
+                    src="assets/img/outils/quiz.svg"
+                    width="52"
+                    height="52"
+                    alt=""
+                  />
+                  <span class="badge">Évaluer</span>
+                </div>
+                <h3 class="carte__titre">
+                  <a class="carte__lien" href="https://gharel.github.io/quiz/">Quiz</a>
+                </h3>
+                <p class="carte__accroche">
+                  Des quiz interactifs à projeter, façon Kahoot&nbsp;: les apprenants répondent
+                  depuis leur téléphone.
+                </p>
+                <ul class="carte__points">
+                  <li>
+                    <svg class="icone" aria-hidden="true"><use href="#i-check" /></svg>
+                    En direct avec un code à 4&nbsp;chiffres ou un QR code
+                  </li>
+                  <li>
+                    <svg class="icone" aria-hidden="true"><use href="#i-check" /></svg>
+                    Six types de questions, chrono, classement et podium
+                  </li>
+                  <li>
+                    <svg class="icone" aria-hidden="true"><use href="#i-check" /></svg>
+                    Mode solo pour s’entraîner, résultats exportables pour Excel
+                  </li>
+                </ul>
+                <div class="carte__pied">
+                  <ul class="carte__infos">
+                    <li>
+                      <svg class="icone" aria-hidden="true"><use href="#i-users" /></svg>
+                      Formateur et apprenants
+                    </li>
+                    <li>
+                      <svg class="icone" aria-hidden="true"><use href="#i-lock" /></svg>
+                      Animation protégée par mot de passe
+                    </li>
+                  </ul>
+                  <span class="carte__ouvrir" aria-hidden="true">
+                    Ouvrir <svg class="icone"><use href="#i-arrow-right" /></svg>
+                  </span>
+                </div>
+              </div>
+            </article>
+          </li>
+
+          <li>
+            <article class="carte" data-couleur="orange">
+              <div class="carte__barre"></div>
+              <div class="carte__corps">
+                <div class="carte__haut">
+                  <img
+                    class="pastille"
+                    src="assets/img/outils/mini-jeux.svg"
+                    width="52"
+                    height="52"
+                    alt=""
+                  />
+                  <span class="badge">Animer</span>
+                </div>
+                <h3 class="carte__titre">
+                  <a class="carte__lien" href="https://gharel.github.io/jeu-formation/"
+                    >Mini-jeux</a
+                  >
+                </h3>
+                <p class="carte__accroche">
+                  Quinze mini-jeux à projeter pour réveiller une séance&nbsp;: Motus numérique, Le
+                  Juste Chiffre, Pyramide, Bingo et bien d’autres.
+                </p>
+                <ul class="carte__points">
+                  <li>
+                    <svg class="icone" aria-hidden="true"><use href="#i-check" /></svg>
+                    De 5 à 15&nbsp;minutes, joués à l’oral, validés par l’animateur
+                  </li>
+                  <li>
+                    <svg class="icone" aria-hidden="true"><use href="#i-check" /></svg>
+                    Thématiques prêtes à jouer&nbsp;: IA, Google, Microsoft&nbsp;365, cybersécurité…
+                  </li>
+                  <li>
+                    <svg class="icone" aria-hidden="true"><use href="#i-check" /></svg>
+                    Roue pour désigner quelqu’un, équipes et scores du groupe
+                  </li>
+                </ul>
+                <div class="carte__pied">
+                  <ul class="carte__infos">
+                    <li>
+                      <svg class="icone" aria-hidden="true"><use href="#i-chalkboard-user" /></svg>
+                      Formateur, au vidéoprojecteur
+                    </li>
+                    <li>
+                      <svg class="icone" aria-hidden="true"><use href="#i-lock" /></svg>
+                      Protégé par mot de passe
+                    </li>
+                  </ul>
+                  <span class="carte__ouvrir" aria-hidden="true">
+                    Ouvrir <svg class="icone"><use href="#i-arrow-right" /></svg>
+                  </span>
+                </div>
+              </div>
+            </article>
+          </li>
+
+          <li>
+            <article class="carte" data-couleur="jaune">
+              <div class="carte__barre"></div>
+              <div class="carte__corps">
+                <div class="carte__haut">
+                  <img
+                    class="pastille"
+                    src="assets/img/outils/vigie.svg"
+                    width="52"
+                    height="52"
+                    alt=""
+                  />
+                  <span class="badge">Veiller</span>
+                </div>
+                <h3 class="carte__titre">
+                  <a class="carte__lien" href="https://gharel.github.io/scraping/">Vigie</a>
+                </h3>
+                <p class="carte__accroche">
+                  La veille des appels d’offres en
+                  <span class="insecable">Nouvelle-Calédonie</span>, à
+                  <span class="insecable">Wallis-et-Futuna</span>, en Polynésie française et au
+                  Vanuatu.
+                </p>
+                <ul class="carte__points">
+                  <li>
+                    <svg class="icone" aria-hidden="true"><use href="#i-check" /></svg>
+                    32&nbsp;sources surveillées toutes les 2&nbsp;heures
+                  </li>
+                  <li>
+                    <svg class="icone" aria-hidden="true"><use href="#i-check" /></svg>
+                    Nouveautés classées par catégorie, alertes par e-mail
+                  </li>
+                  <li>
+                    <svg class="icone" aria-hidden="true"><use href="#i-check" /></svg>
+                    Toute page web à surveiller, en plus des portails
+                  </li>
+                </ul>
+                <div class="carte__pied">
+                  <ul class="carte__infos">
+                    <li>
+                      <svg class="icone" aria-hidden="true"><use href="#i-briefcase" /></svg>
+                      Équipe Skazy Formation
+                    </li>
+                    <li>
+                      <svg class="icone" aria-hidden="true"><use href="#i-lock" /></svg>
+                      Protégé par mot de passe
+                    </li>
+                  </ul>
+                  <span class="carte__ouvrir" aria-hidden="true">
+                    Ouvrir <svg class="icone"><use href="#i-arrow-right" /></svg>
+                  </span>
+                </div>
+              </div>
+            </article>
+          </li>
+
+          <li>
+            <article class="carte" data-couleur="vert">
+              <div class="carte__barre"></div>
+              <div class="carte__corps">
+                <div class="carte__haut">
+                  <img
+                    class="pastille"
+                    src="assets/img/outils/atelier-exercices-ia.svg"
+                    width="52"
+                    height="52"
+                    alt=""
+                  />
+                  <span class="badge">Pratiquer</span>
+                </div>
+                <h3 class="carte__titre">
+                  <a class="carte__lien" href="https://gharel.github.io/exercices-ia/"
+                    >Atelier d’exercices IA</a
+                  >
+                </h3>
+                <p class="carte__accroche">
+                  Près de 300&nbsp;exercices concrets pour pratiquer l’IA dans son métier, choisis
+                  selon le métier, le niveau et les outils.
+                </p>
+                <ul class="carte__points">
+                  <li>
+                    <svg class="icone" aria-hidden="true"><use href="#i-check" /></svg>
+                    Situations en <span class="insecable">Nouvelle-Calédonie</span>, prompt de
+                    départ à copier
+                  </li>
+                  <li>
+                    <svg class="icone" aria-hidden="true"><use href="#i-check" /></svg>
+                    Claude, ChatGPT, Copilot, Gemini, Gemini Notebook et Canva
+                  </li>
+                  <li>
+                    <svg class="icone" aria-hidden="true"><use href="#i-check" /></svg>
+                    Séance à imprimer ou à partager par lien
+                  </li>
+                </ul>
+                <div class="carte__pied">
+                  <ul class="carte__infos">
+                    <li>
+                      <svg class="icone" aria-hidden="true"><use href="#i-users" /></svg>
+                      Formateur et apprenants
+                    </li>
+                    <li>
+                      <svg class="icone" aria-hidden="true"><use href="#i-lock-open" /></svg>
+                      Accès libre
+                    </li>
+                  </ul>
+                  <span class="carte__ouvrir" aria-hidden="true">
+                    Ouvrir <svg class="icone"><use href="#i-arrow-right" /></svg>
+                  </span>
+                </div>
+              </div>
+            </article>
+          </li>
+
+          <li>
+            <article class="carte" data-couleur="bleu">
+              <div class="carte__barre"></div>
+              <div class="carte__corps">
+                <div class="carte__haut">
+                  <img
+                    class="pastille"
+                    src="assets/img/outils/comprendre-ia.svg"
+                    width="52"
+                    height="52"
+                    alt=""
+                  />
+                  <span class="badge">Comprendre</span>
+                </div>
+                <h3 class="carte__titre">
+                  <a class="carte__lien" href="https://gharel.github.io/simulateur-ia/"
+                    >Comprendre l’IA</a
+                  >
+                </h3>
+                <p class="carte__accroche">
+                  Neuf fiches interactives écrites en FALC (facile à lire et à comprendre) pour
+                  expliquer l’IA sans jargon.
+                </p>
+                <ul class="carte__points">
+                  <li>
+                    <svg class="icone" aria-hidden="true"><use href="#i-check" /></svg>
+                    Tokens, mémoire, choix du modèle et de l’effort
+                  </li>
+                  <li>
+                    <svg class="icone" aria-hidden="true"><use href="#i-check" /></svg>
+                    Hallucinations, complaisance, messages piégés
+                  </li>
+                  <li>
+                    <svg class="icone" aria-hidden="true"><use href="#i-check" /></svg>
+                    Outils, agents et budget&nbsp;: de comprendre à agir
+                  </li>
+                </ul>
+                <div class="carte__pied">
+                  <ul class="carte__infos">
+                    <li>
+                      <svg class="icone" aria-hidden="true"><use href="#i-users" /></svg>
+                      Formateur et apprenants
+                    </li>
+                    <li>
+                      <svg class="icone" aria-hidden="true"><use href="#i-lock-open" /></svg>
+                      Accès libre
+                    </li>
+                  </ul>
+                  <span class="carte__ouvrir" aria-hidden="true">
+                    Ouvrir <svg class="icone"><use href="#i-arrow-right" /></svg>
+                  </span>
+                </div>
+              </div>
+            </article>
+          </li>
+
+          <li>
+            <article class="carte" data-couleur="violet">
+              <div class="carte__barre"></div>
+              <div class="carte__corps">
+                <div class="carte__haut">
+                  <img
+                    class="pastille"
+                    src="assets/img/outils/promptheque.svg"
+                    width="52"
+                    height="52"
+                    alt=""
+                  />
+                  <span class="badge">S’inspirer</span>
+                </div>
+                <h3 class="carte__titre">
+                  <a class="carte__lien" href="https://gharel.github.io/prompts/">Prompthèque</a>
+                </h3>
+                <p class="carte__accroche">
+                  Les techniques de prompt du jour de la newsletter The Neuron, traduites en
+                  français et prêtes à copier.
+                </p>
+                <ul class="carte__points">
+                  <li>
+                    <svg class="icone" aria-hidden="true"><use href="#i-check" /></svg>
+                    8&nbsp;catégories, filtres par niveau et par outil
+                  </li>
+                  <li>
+                    <svg class="icone" aria-hidden="true"><use href="#i-check" /></svg>
+                    Prompts à copier, passages à compléter surlignés
+                  </li>
+                  <li>
+                    <svg class="icone" aria-hidden="true"><use href="#i-check" /></svg>
+                    Favoris et lien direct vers chaque fiche
+                  </li>
+                </ul>
+                <div class="carte__pied">
+                  <ul class="carte__infos">
+                    <li>
+                      <svg class="icone" aria-hidden="true"><use href="#i-users" /></svg>
+                      Formateur et apprenants
+                    </li>
+                    <li>
+                      <svg class="icone" aria-hidden="true"><use href="#i-lock-open" /></svg>
+                      Accès libre
+                    </li>
+                  </ul>
+                  <span class="carte__ouvrir" aria-hidden="true">
+                    Ouvrir <svg class="icone"><use href="#i-arrow-right" /></svg>
+                  </span>
+                </div>
+              </div>
+            </article>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="pied">
+      <div class="pied__interieur">
+        <p>
+          &copy;&nbsp;2026 <strong>Skazy Formation</strong>,
+          <span class="insecable">Nouvelle-Calédonie</span>&nbsp;·
+          <a class="lien-pied" href="https://formation.skazy.nc" target="_blank" rel="noopener"
+            >formation.skazy.nc</a
+          >
+        </p>
+        <p>
+          Usage réservé aux stagiaires de Skazy Formation&nbsp;: reproduction et réutilisation dans
+          une autre formation interdites sans accord écrit.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
