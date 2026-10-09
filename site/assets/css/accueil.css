@@ -192,6 +192,32 @@ button {
 .heros :focus-visible {
   outline-color: var(--scene-accent);
 }
+/* Sur téléphone, le héros remplit l'écran : sombre, il laissait croire que le thème clair ne
+   s'appliquait pas. En thème clair, il prend donc les couleurs claires de la page, comme la
+   scène de la Prompthèque et le profil de l'Atelier d'exercices IA. */
+@media (max-width: 640px) {
+  :root:not([data-theme='dark']) .heros {
+    --scene: var(--fond);
+    --scene-2: var(--surface);
+    --scene-3: var(--surface-2);
+    --scene-bord: var(--bord);
+    --scene-texte: var(--texte-fort);
+    --scene-doux: var(--texte-doux);
+    --scene-accent: var(--primaire-texte);
+  }
+}
+/* Thème du système quand il est sombre : le héros garde ses couleurs sombres. */
+@media (max-width: 640px) and (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .heros {
+    --scene: inherit;
+    --scene-2: inherit;
+    --scene-3: inherit;
+    --scene-bord: inherit;
+    --scene-texte: inherit;
+    --scene-doux: inherit;
+    --scene-accent: inherit;
+  }
+}
 /* L'arc-en-ciel des outils : six segments, chacun dans le dégradé de son favicon. Un seul
    dégradé à arrêts francs, pour qu'aucun filet n'apparaisse entre deux segments. */
 .heros::after {

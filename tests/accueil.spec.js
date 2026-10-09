@@ -252,6 +252,31 @@ test('le thème suit le choix fait dans un autre outil (autre onglet, retour en 
   await verifierBoutonTheme(page, 'auto');
 });
 
+test('sur téléphone, le héros est clair en thème clair ; sombre sur ordinateur', async ({
+  page,
+}) => {
+  const fondHeros = () =>
+    page.evaluate(() => getComputedStyle(document.querySelector('.heros')).backgroundColor);
+  const CLAIR = 'rgb(248, 249, 250)';
+  const cas = [
+    { largeur: 390, systeme: 'light', choix: null, attendu: CLAIR },
+    { largeur: 390, systeme: 'dark', choix: 'light', attendu: CLAIR },
+    { largeur: 390, systeme: 'dark', choix: null, attendu: 'rgb(12, 12, 12)' },
+    { largeur: 390, systeme: 'light', choix: 'dark', attendu: 'rgb(12, 12, 12)' },
+    { largeur: 1280, systeme: 'light', choix: null, attendu: 'rgb(26, 26, 26)' },
+  ];
+  await ouvrir(page);
+  for (const { largeur, systeme, choix, attendu } of cas) {
+    await page.setViewportSize({ width: largeur, height: 844 });
+    await page.emulateMedia({ colorScheme: systeme });
+    await page.evaluate((valeur) => {
+      if (valeur) document.documentElement.dataset.theme = valeur;
+      else delete document.documentElement.dataset.theme;
+    }, choix);
+    expect(await fondHeros(), `${largeur} px, système ${systeme}, choix ${choix}`).toBe(attendu);
+  }
+});
+
 for (const theme of ['light', 'dark']) {
   for (const ecran of ECRANS) {
     test(`mise en page et accessibilité : ${ecran.nom} (${ecran.width} px), thème ${theme}`, async ({
