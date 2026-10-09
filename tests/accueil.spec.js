@@ -39,6 +39,22 @@ const ECRANS = [
   { nom: 'petit téléphone', width: 360, height: 740 },
 ];
 
+// Bouton du thème, le même dans tous les outils : l'icône montre l'état actuel, que le nom
+// (aria-label et title) dit aussi, avec une espace insécable avant les deux-points.
+const ETATS_THEME = {
+  auto: { icone: '#i-circle-half-stroke', nom: 'celui du système' },
+  light: { icone: '#i-sun', nom: 'clair' },
+  dark: { icone: '#i-moon', nom: 'sombre' },
+};
+
+async function verifierBoutonTheme(page, theme) {
+  const bouton = page.locator('#bouton-theme');
+  const nom = `Thème : ${ETATS_THEME[theme].nom}. Changer de thème`;
+  await expect(bouton).toHaveAttribute('aria-label', nom);
+  await expect(bouton).toHaveAttribute('title', nom);
+  await expect(bouton.locator('use')).toHaveAttribute('href', ETATS_THEME[theme].icone);
+}
+
 /** Ouvre l'accueil, polices chargées, et renvoie la liste (vivante) des erreurs de la page. */
 async function ouvrir(page) {
   const erreurs = [];
@@ -150,24 +166,90 @@ test('le bouton du thème passe de système à clair, puis sombre, et s’en sou
   await ouvrir(page);
   const racine = page.locator('html');
   const bouton = page.locator('#bouton-theme');
+  const choix = () => page.evaluate(() => localStorage.getItem('skazy-outils:theme'));
   await expect(bouton).toBeVisible();
   await expect(racine).not.toHaveAttribute('data-theme');
-  await expect(bouton).toHaveAttribute('aria-label', /système/);
+  await verifierBoutonTheme(page, 'auto');
 
   await bouton.click();
   await expect(racine).toHaveAttribute('data-theme', 'light');
-  await expect(bouton).toHaveAttribute('aria-label', /clair/);
+  await verifierBoutonTheme(page, 'light');
+  expect(await choix()).toBe(JSON.stringify('light'));
   await page.reload();
   await expect(racine).toHaveAttribute('data-theme', 'light');
+  await verifierBoutonTheme(page, 'light');
 
   await bouton.click();
   await expect(racine).toHaveAttribute('data-theme', 'dark');
+  await verifierBoutonTheme(page, 'dark');
+  expect(await choix()).toBe(JSON.stringify('dark'));
   await expect(page.locator('.logo--sombre')).toBeVisible();
   await expect(page.locator('.logo--clair')).toBeHidden();
 
   await bouton.click();
   await expect(racine).not.toHaveAttribute('data-theme');
-  expect(await page.evaluate(() => localStorage.getItem('skazy-outils:theme'))).toBeNull();
+  await verifierBoutonTheme(page, 'auto');
+  expect(await choix()).toBeNull();
+});
+
+test('le thème clair choisi ne se laisse pas assombrir (mode nuit de Brave, Dark Reader)', async ({
+  page,
+}) => {
+  await ouvrir(page);
+  // Le verrou de Dark Reader suit la déclaration des deux thèmes de la page.
+  await expect(
+    page.locator('meta[name="color-scheme"][content="light dark"] + meta[name="darkreader-lock"]'),
+  ).toHaveCount(1);
+  const schema = () => page.evaluate(() => getComputedStyle(document.documentElement).colorScheme);
+  const bouton = page.locator('#bouton-theme');
+  expect(await schema()).toBe('light');
+  await bouton.click();
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
+  expect(await schema()).toMatch(/^(only light|light only)$/);
+  await bouton.click();
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+  expect(await schema()).toBe('dark');
+});
+
+test('le thème suit le choix fait dans un autre outil (autre onglet, retour en arrière)', async ({
+  page,
+  context,
+}) => {
+  await ouvrir(page);
+  const racine = page.locator('html');
+  const barres = page.locator('meta[name="theme-color"]');
+
+  // Un autre onglet de la même origine (un autre outil) change le thème : événement storage.
+  const autre = await context.newPage();
+  await autre.goto('./');
+  await autre.locator('#bouton-theme').click();
+  await expect(racine).toHaveAttribute('data-theme', 'light');
+  await verifierBoutonTheme(page, 'light');
+  await autre.locator('#bouton-theme').click();
+  await expect(racine).toHaveAttribute('data-theme', 'dark');
+  await verifierBoutonTheme(page, 'dark');
+  await expect(barres.first()).toHaveAttribute('content', '#1f1f1f');
+  await expect(barres.last()).toHaveAttribute('content', '#1f1f1f');
+  // Stockage vidé (clé null) : retour au thème du système.
+  await autre.evaluate(() => localStorage.clear());
+  await expect(racine).not.toHaveAttribute('data-theme');
+  await verifierBoutonTheme(page, 'auto');
+  await expect(barres.first()).toHaveAttribute('content', '#ffffff');
+  await expect(barres.last()).toHaveAttribute('content', '#1f1f1f');
+  await autre.close();
+
+  // Retour depuis le cache du navigateur (bfcache, désactivé par Playwright) : on simule le
+  // pageshow « persisted » qui suit un détour par un outil où le thème a changé.
+  await page.evaluate(() => {
+    localStorage.setItem('skazy-outils:theme', JSON.stringify('dark'));
+    dispatchEvent(new PageTransitionEvent('pageshow', { persisted: true }));
+  });
+  await expect(racine).toHaveAttribute('data-theme', 'dark');
+  await verifierBoutonTheme(page, 'dark');
+  // Le bouton repart de l'état relu : sombre, puis celui du système.
+  await page.locator('#bouton-theme').click();
+  await expect(racine).not.toHaveAttribute('data-theme');
+  await verifierBoutonTheme(page, 'auto');
 });
 
 for (const theme of ['light', 'dark']) {

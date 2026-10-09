@@ -1,6 +1,8 @@
 /**
  * Bouton du thème : celui du système, clair, puis sombre. Le choix est gardé dans le navigateur
  * (clé « skazy-outils:theme ») ; le script en ligne du <head> l'applique avant l'affichage.
+ * Les six outils partagent cette clé (même origine) : un choix fait dans l'un vaut pour tous, et
+ * la page le suit aussitôt (autre onglet, ou retour en arrière depuis un outil).
  */
 const CLE = 'skazy-outils:theme';
 
@@ -57,4 +59,19 @@ bouton.addEventListener('click', () => {
   theme = THEMES[theme].suivant;
   ecrire(theme);
   appliquer(theme);
+});
+
+function resynchroniser() {
+  theme = lire();
+  appliquer(theme);
+}
+
+// Choix changé dans un autre onglet d'un outil (clé null : stockage vidé).
+addEventListener('storage', (evenement) => {
+  if (evenement.key === CLE || evenement.key === null) resynchroniser();
+});
+
+// Retour sur la page depuis le cache du navigateur (bfcache), après un détour par un outil.
+addEventListener('pageshow', (evenement) => {
+  if (evenement.persisted) resynchroniser();
 });

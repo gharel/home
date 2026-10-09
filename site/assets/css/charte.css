@@ -191,6 +191,14 @@
   --violet-pale: #311f4b;
 }
 
+/*
+ * Thème clair choisi : « only light » interdit aux navigateurs et aux extensions qui assombrissent
+ * les sites (mode nuit de Brave, Dark Reader…) d'assombrir la page.
+ */
+:root[data-theme='light'] {
+  color-scheme: only light;
+}
+
 /* Couleur de chaque outil, posée sur sa carte. */
 [data-couleur='rouge'] {
   --outil-a: var(--rouge-a);
