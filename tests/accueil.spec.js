@@ -181,6 +181,20 @@ for (const theme of ['light', 'dark']) {
       );
       expect(coupes).toEqual([]);
 
+      // Le texte de chaque point reste à droite de sa coche, sur toutes ses lignes.
+      const sousLaCoche = await page.evaluate(() =>
+        [...document.querySelectorAll('.carte__points li, .carte__infos li')]
+          .filter((li) => {
+            const icone = li.querySelector('.icone').getBoundingClientRect();
+            const texte = document.createRange();
+            texte.setStartAfter(li.querySelector('.icone'));
+            texte.setEndAfter(li.lastChild);
+            return [...texte.getClientRects()].some((r) => r.width > 0 && r.left < icone.right);
+          })
+          .map((li) => li.textContent.trim()),
+      );
+      expect(sousLaCoche).toEqual([]);
+
       // Le bon logo pour le thème.
       await expect(page.locator(theme === 'dark' ? '.logo--sombre' : '.logo--clair')).toBeVisible();
 

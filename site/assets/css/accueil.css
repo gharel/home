@@ -422,13 +422,16 @@ button {
   font-size: var(--texte-sm);
   line-height: 1.5;
 }
+/* La coche est posée dans la marge : le texte du point reste un seul paragraphe, même avec un
+   <span class="insecable"> (qui deviendrait sinon une cellule de grille à part). */
 .carte__points li {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: var(--e-2);
+  position: relative;
+  padding-left: calc(1em + var(--e-2));
 }
 .carte__points .icone {
-  margin-top: 0.25em;
+  position: absolute;
+  left: 0;
+  top: 0.25em;
   color: var(--outil-texte);
 }
 
