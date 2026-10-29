@@ -285,7 +285,7 @@ button {
 }
 
 /* Accès direct : les pastilles des outils, comme sur l'écran d'accueil d'un téléphone. Quatre par
-   ligne, la dernière ligne centrée (4 + 3 pour l'arc-en-ciel) ; sept sur une ligne quand le héros
+   ligne, alignées à gauche (4 + 3 pour l'arc-en-ciel) ; sept sur une ligne quand le héros
    passe sur une colonne. Les tuiles de l'équipe gardent la même taille. */
 .lanceur__titre {
   margin-bottom: var(--e-3);
@@ -310,7 +310,6 @@ button {
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: var(--lanceur-ecart);
 }
 .lanceur__liste > li {
