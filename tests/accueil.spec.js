@@ -46,7 +46,7 @@ const EQUIPE = [
   },
   {
     nom: 'Mini CRM',
-    url: 'https://script.google.com/a/macros/skazy.nc/s/AKfycbwREjH5R29EPxQaIabmkPdqyDEFW7JiAaUVD-hmNCU/dev',
+    url: 'https://script.google.com/a/macros/skazy.nc/s/AKfycbwREjH5R29EPxQaIabmkPdqyDEFW7JiAaUVD-hmNCU/dev#tableau',
     icone: 'mini-crm.svg',
   },
   { nom: 'Skills IA', url: 'https://gharel.github.io/skills/', icone: 'skills-ia.svg' },
