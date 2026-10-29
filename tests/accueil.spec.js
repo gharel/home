@@ -41,12 +41,12 @@ const OUTILS = [
 const EQUIPE = [
   {
     nom: 'Dashboard Formation',
-    url: 'https://script.google.com/macros/s/AKfycbwgGLgG079USAcbKWSo60KEp9jNR7xS9Oek_Rw4ol8Zz1NIJwzxFntwgks0LzQf_q27rg/exec',
+    url: 'https://script.google.com/a/macros/skazy.nc/s/AKfycbwgGLgG079USAcbKWSo60KEp9jNR7xS9Oek_Rw4ol8Zz1NIJwzxFntwgks0LzQf_q27rg/exec',
     icone: 'dashboard-formation.svg',
   },
   {
     nom: 'Mini CRM',
-    url: 'https://script.google.com/macros/s/AKfycbwREjH5R29EPxQaIabmkPdqyDEFW7JiAaUVD-hmNCU/dev',
+    url: 'https://script.google.com/a/macros/skazy.nc/s/AKfycbwREjH5R29EPxQaIabmkPdqyDEFW7JiAaUVD-hmNCU/dev',
     icone: 'mini-crm.svg',
   },
   { nom: 'Skills IA', url: 'https://gharel.github.io/skills/', icone: 'skills-ia.svg' },
