@@ -2,7 +2,7 @@
   "name": "outils-skazy-formation",
   "version": "1.0.0",
   "private": true,
-  "description": "Les outils Skazy Formation : page d'accueil qui présente les six outils (Quiz, Mini-jeux, Vigie, Atelier d'exercices IA, Comprendre l'IA, Prompthèque)",
+  "description": "Les outils Skazy Formation : page d'accueil qui présente les sept outils (Quiz, Mini-jeux, Vigie, Atelier d'exercices IA, Comprendre l'IA, Captif, Prompthèque) et, dans l'extension, ceux de l'équipe",
   "type": "module",
   "scripts": {
     "dev": "node outils/dev.js",

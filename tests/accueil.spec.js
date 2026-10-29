@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
-// Les six outils, dans l'ordre de l'arc-en-ciel Skazy Formation.
+// Les sept outils, dans l'ordre de l'arc-en-ciel Skazy Formation.
 const OUTILS = [
   { nom: 'Quiz', couleur: 'rouge', url: 'https://gharel.github.io/quiz/', icone: 'quiz.svg' },
   {
@@ -24,10 +24,36 @@ const OUTILS = [
     icone: 'comprendre-ia.svg',
   },
   {
+    nom: 'Captif',
+    couleur: 'indigo',
+    url: 'https://gharel.github.io/captif/',
+    icone: 'captif.svg',
+  },
+  {
     nom: 'Prompthèque',
     couleur: 'violet',
     url: 'https://gharel.github.io/prompts/',
     icone: 'promptheque.svg',
+  },
+];
+
+// Les outils de l'équipe, en vert Skazy : seulement dans l'extension (page ouverte avec ?equipe).
+const EQUIPE = [
+  {
+    nom: 'Dashboard Formation',
+    url: 'https://script.google.com/macros/s/AKfycbwgGLgG079USAcbKWSo60KEp9jNR7xS9Oek_Rw4ol8Zz1NIJwzxFntwgks0LzQf_q27rg/exec',
+    icone: 'dashboard-formation.svg',
+  },
+  {
+    nom: 'Mini CRM',
+    url: 'https://script.google.com/macros/s/AKfycbwREjH5R29EPxQaIabmkPdqyDEFW7JiAaUVD-hmNCU/dev',
+    icone: 'mini-crm.svg',
+  },
+  { nom: 'Skills IA', url: 'https://gharel.github.io/skills/', icone: 'skills-ia.svg' },
+  {
+    nom: 'Design Skazy',
+    url: 'https://github.com/gharel/design-skazy',
+    icone: 'design-skazy.svg',
   },
 ];
 
@@ -55,12 +81,15 @@ async function verifierBoutonTheme(page, theme) {
   await expect(bouton.locator('use')).toHaveAttribute('href', ETATS_THEME[theme].icone);
 }
 
-/** Ouvre l'accueil, polices chargées, et renvoie la liste (vivante) des erreurs de la page. */
-async function ouvrir(page) {
+/**
+ * Ouvre l'accueil (`./?equipe` : comme l'extension), polices chargées, et renvoie la liste
+ * (vivante) des erreurs de la page.
+ */
+async function ouvrir(page, adresse = './') {
   const erreurs = [];
   page.on('console', (message) => message.type() === 'error' && erreurs.push(message.text()));
   page.on('pageerror', (erreur) => erreurs.push(erreur.message));
-  await page.goto('./');
+  await page.goto(adresse);
   await page.evaluate(() => document.fonts.ready);
   return erreurs;
 }
@@ -103,11 +132,11 @@ test('le bouton « Remonter en haut » apparaît après défilement et ramène e
   await expect(bouton).toBeHidden();
 });
 
-test('les six outils, dans l’ordre de l’arc-en-ciel, avec leur favicon', async ({ page }) => {
+test('les sept outils, dans l’ordre de l’arc-en-ciel, avec leur favicon', async ({ page }) => {
   await ouvrir(page);
-  const cartes = page.locator('.carte');
+  const cartes = page.locator('.carte:visible');
   await expect(cartes).toHaveCount(OUTILS.length);
-  const lanceur = page.locator('.lanceur__lien');
+  const lanceur = page.locator('.lanceur__lien:visible');
   await expect(lanceur).toHaveCount(OUTILS.length);
   for (const [i, outil] of OUTILS.entries()) {
     const carte = cartes.nth(i);
@@ -126,20 +155,62 @@ test('les six outils, dans l’ordre de l’arc-en-ciel, avec leur favicon', asy
   }
 });
 
-test('toutes les images se chargent', async ({ page }) => {
+test('les outils de l’équipe n’apparaissent que dans l’extension (?equipe)', async ({ page }) => {
   await ouvrir(page);
+  await expect(page.locator('.equipe:visible')).toHaveCount(0);
+  await expect(page.getByRole('heading', { name: 'Pour l’équipe' })).toHaveCount(0);
+
+  await ouvrir(page, './?equipe');
+  const cartes = page.locator('#equipe .carte');
+  await expect(cartes).toHaveCount(EQUIPE.length);
+  const lanceur = page.locator('.lanceur__liste.equipe .lanceur__lien');
+  await expect(lanceur).toHaveCount(EQUIPE.length);
+  for (const [i, outil] of EQUIPE.entries()) {
+    const carte = cartes.nth(i);
+    await expect(carte).toBeVisible();
+    await expect(carte).toHaveAttribute('data-couleur', 'skazy');
+    await expect(carte.locator('.carte__lien')).toHaveText(outil.nom);
+    await expect(carte.locator('.carte__lien')).toHaveAttribute('href', outil.url);
+    await expect(carte.locator('.pastille')).toHaveAttribute(
+      'src',
+      `assets/img/outils/${outil.icone}`,
+    );
+    await expect(lanceur.nth(i)).toHaveAttribute('href', outil.url);
+  }
+  // Les outils de l'arc-en-ciel restent à leur place, avant ceux de l'équipe.
+  await expect(page.locator('.outils:not(.equipe) .carte')).toHaveCount(OUTILS.length);
+});
+
+test('dans l’extension, chaque outil s’ouvre dans tout l’onglet', async ({ page }) => {
+  await ouvrir(page, './?equipe');
+  // La page est dans un cadre de l'extension : un outil ouvert dans le cadre n'aurait ni son
+  // adresse ni son favicon, et les applications Google refusent d'y être affichées.
+  for (const lien of await page.locator('.lanceur__lien, .carte__lien').all()) {
+    await expect(lien).toHaveAttribute('target', '_top');
+  }
+});
+
+test('toutes les images se chargent', async ({ page }) => {
+  await ouvrir(page, './?equipe');
   await page.waitForLoadState('load');
   const cassees = await page.$$eval('img', (images) =>
     images.filter((img) => !img.complete || img.naturalWidth === 0).map((img) => img.src),
   );
   expect(cassees).toEqual([]);
-  for (const chemin of ['favicon.svg', 'favicon-32.png', 'apple-touch-icon.png']) {
+  for (const chemin of [
+    'favicon.svg',
+    'favicon-32.png',
+    'apple-touch-icon.png',
+    // Favicons des applications Apps Script (setFaviconUrl dans leur doGet()).
+    'assets/img/outils/dashboard-formation.png',
+    'assets/img/outils/mini-crm.png',
+  ]) {
     expect((await page.request.get(chemin)).ok(), chemin).toBe(true);
   }
 });
 
 test('toute la carte mène à l’outil', async ({ page }) => {
-  await ouvrir(page);
+  await ouvrir(page, './?equipe');
   for (const carte of await page.locator('.carte').all()) {
     // elementFromPoint ne voit que l'écran : on amène d'abord la carte en vue.
     await carte.scrollIntoViewIfNeeded();
@@ -153,7 +224,7 @@ test('toute la carte mène à l’outil', async ({ page }) => {
 });
 
 test('typographie : espace insécable avant ? ! ; : et le point médian', async ({ page }) => {
-  await ouvrir(page);
+  await ouvrir(page, './?equipe');
   const texte = await page.locator('body').innerText();
   expect(texte).not.toMatch(/ [?!;:·]/);
   const etiquette = await page.locator('#bouton-theme').getAttribute('aria-label');
@@ -277,73 +348,81 @@ test('sur téléphone, le héros est clair en thème clair ; sombre sur ordinate
   }
 });
 
-for (const theme of ['light', 'dark']) {
-  for (const ecran of ECRANS) {
-    test(`mise en page et accessibilité : ${ecran.nom} (${ecran.width} px), thème ${theme}`, async ({
-      page,
-    }) => {
-      await page.emulateMedia({ colorScheme: theme });
-      await page.setViewportSize({ width: ecran.width, height: ecran.height });
-      const erreurs = await ouvrir(page);
+for (const [vue, adresse] of [
+  ['page', './'],
+  ['extension', './?equipe'],
+]) {
+  for (const theme of ['light', 'dark']) {
+    for (const ecran of ECRANS) {
+      test(`mise en page et accessibilité (${vue}) : ${ecran.nom} (${ecran.width} px), thème ${theme}`, async ({
+        page,
+      }) => {
+        await page.emulateMedia({ colorScheme: theme });
+        await page.setViewportSize({ width: ecran.width, height: ecran.height });
+        const erreurs = await ouvrir(page, adresse);
 
-      // Pas de défilement horizontal, rien qui dépasse de l'écran.
-      const largeur = await page.evaluate(() => ({
-        page: document.documentElement.scrollWidth,
-        ecran: document.documentElement.clientWidth,
-      }));
-      expect(largeur.page).toBeLessThanOrEqual(largeur.ecran);
-      const dehors = await page.evaluate(() =>
-        [...document.querySelectorAll('body *')]
-          .filter(
-            (el) => el.getClientRects().length && !el.closest('svg[aria-hidden="true"][width="0"]'),
-          )
-          .filter((el) => {
-            const r = el.getBoundingClientRect();
-            return (
-              r.width > 0 && (r.left < -1 || r.right > document.documentElement.clientWidth + 1)
-            );
-          })
-          .map((el) => el.className || el.tagName),
-      );
-      expect(dehors).toEqual([]);
+        // Pas de défilement horizontal, rien qui dépasse de l'écran.
+        const largeur = await page.evaluate(() => ({
+          page: document.documentElement.scrollWidth,
+          ecran: document.documentElement.clientWidth,
+        }));
+        expect(largeur.page).toBeLessThanOrEqual(largeur.ecran);
+        const dehors = await page.evaluate(() =>
+          [...document.querySelectorAll('body *')]
+            .filter(
+              (el) =>
+                el.getClientRects().length && !el.closest('svg[aria-hidden="true"][width="0"]'),
+            )
+            .filter((el) => {
+              const r = el.getBoundingClientRect();
+              return (
+                r.width > 0 && (r.left < -1 || r.right > document.documentElement.clientWidth + 1)
+              );
+            })
+            .map((el) => el.className || el.tagName),
+        );
+        expect(dehors).toEqual([]);
 
-      // Aucun texte coupé dans son badge, son lien ou sa ligne.
-      const coupes = await page.evaluate(() =>
-        [
-          ...document.querySelectorAll(
-            '.badge, .lanceur__lien, .carte__ouvrir, .bandeau__nom, .carte__titre, .carte__infos li, .surtitre, .heros h1',
-          ),
-        ]
-          .filter((el) => el.scrollWidth > el.clientWidth + 1)
-          .map((el) => el.textContent.trim()),
-      );
-      expect(coupes).toEqual([]);
+        // Aucun texte coupé dans son badge, son lien ou sa ligne.
+        const coupes = await page.evaluate(() =>
+          [
+            ...document.querySelectorAll(
+              '.badge, .lanceur__lien, .carte__ouvrir, .bandeau__nom, .carte__titre, .carte__infos li, .surtitre, .heros h1',
+            ),
+          ]
+            .filter((el) => el.scrollWidth > el.clientWidth + 1)
+            .map((el) => el.textContent.trim()),
+        );
+        expect(coupes).toEqual([]);
 
-      // Le texte de chaque point reste à droite de sa coche, sur toutes ses lignes.
-      const sousLaCoche = await page.evaluate(() =>
-        [...document.querySelectorAll('.carte__points li, .carte__infos li')]
-          .filter((li) => {
-            const icone = li.querySelector('.icone').getBoundingClientRect();
-            const texte = document.createRange();
-            texte.setStartAfter(li.querySelector('.icone'));
-            texte.setEndAfter(li.lastChild);
-            return [...texte.getClientRects()].some((r) => r.width > 0 && r.left < icone.right);
-          })
-          .map((li) => li.textContent.trim()),
-      );
-      expect(sousLaCoche).toEqual([]);
+        // Le texte de chaque point reste à droite de sa coche, sur toutes ses lignes.
+        const sousLaCoche = await page.evaluate(() =>
+          [...document.querySelectorAll('.carte__points li, .carte__infos li')]
+            .filter((li) => {
+              const icone = li.querySelector('.icone').getBoundingClientRect();
+              const texte = document.createRange();
+              texte.setStartAfter(li.querySelector('.icone'));
+              texte.setEndAfter(li.lastChild);
+              return [...texte.getClientRects()].some((r) => r.width > 0 && r.left < icone.right);
+            })
+            .map((li) => li.textContent.trim()),
+        );
+        expect(sousLaCoche).toEqual([]);
 
-      // Le bon logo pour le thème.
-      await expect(page.locator(theme === 'dark' ? '.logo--sombre' : '.logo--clair')).toBeVisible();
+        // Le bon logo pour le thème.
+        await expect(
+          page.locator(theme === 'dark' ? '.logo--sombre' : '.logo--clair'),
+        ).toBeVisible();
 
-      const axe = await new AxeBuilder({ page })
-        .withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
-        .analyze();
-      expect(
-        axe.violations.map((v) => `${v.id} : ${v.nodes.map((n) => n.target).join(', ')}`),
-      ).toEqual([]);
+        const axe = await new AxeBuilder({ page })
+          .withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
+          .analyze();
+        expect(
+          axe.violations.map((v) => `${v.id} : ${v.nodes.map((n) => n.target).join(', ')}`),
+        ).toEqual([]);
 
-      expect(erreurs).toEqual([]);
-    });
+        expect(erreurs).toEqual([]);
+      });
+    }
   }
 }

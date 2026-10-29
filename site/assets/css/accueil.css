@@ -62,6 +62,11 @@ button {
   display: none !important;
 }
 
+/* Les outils de l'équipe : seulement quand la page est ouverte avec ?equipe (l'extension). */
+:root:not([data-equipe]) .equipe {
+  display: none;
+}
+
 /* Un nom composé (Mini-jeux, Nouvelle-Calédonie) ne se coupe pas au trait d'union. */
 .insecable {
   white-space: nowrap;
@@ -218,7 +223,7 @@ button {
     --scene-accent: inherit;
   }
 }
-/* L'arc-en-ciel des outils : six segments, chacun dans le dégradé de son favicon. Un seul
+/* L'arc-en-ciel des outils : sept segments, chacun dans le dégradé de son favicon. Un seul
    dégradé à arrêts francs, pour qu'aucun filet n'apparaisse entre deux segments. */
 .heros::after {
   content: '';
@@ -228,16 +233,18 @@ button {
   background: linear-gradient(
     90deg,
     var(--rouge-a) 0%,
-    var(--rouge-b) 16.667%,
-    var(--orange-a) 16.667%,
-    var(--orange-b) 33.333%,
-    var(--jaune-a) 33.333%,
-    var(--jaune-b) 50%,
-    var(--vert-a) 50%,
-    var(--vert-b) 66.667%,
-    var(--bleu-a) 66.667%,
-    var(--bleu-b) 83.333%,
-    var(--violet-a) 83.333%,
+    var(--rouge-b) 14.286%,
+    var(--orange-a) 14.286%,
+    var(--orange-b) 28.571%,
+    var(--jaune-a) 28.571%,
+    var(--jaune-b) 42.857%,
+    var(--vert-a) 42.857%,
+    var(--vert-b) 57.143%,
+    var(--bleu-a) 57.143%,
+    var(--bleu-b) 71.429%,
+    var(--indigo-a) 71.429%,
+    var(--indigo-b) 85.714%,
+    var(--violet-a) 85.714%,
     var(--violet-b) 100%
   );
 }
@@ -277,7 +284,9 @@ button {
   line-height: 1.6;
 }
 
-/* Accès direct : les six pastilles, comme sur l'écran d'accueil d'un téléphone. */
+/* Accès direct : les pastilles des outils, comme sur l'écran d'accueil d'un téléphone. Quatre par
+   ligne, la dernière ligne centrée (4 + 3 pour l'arc-en-ciel) ; sept sur une ligne quand le héros
+   passe sur une colonne. Les tuiles de l'équipe gardent la même taille. */
 .lanceur__titre {
   margin-bottom: var(--e-3);
   font-size: var(--texte-xs);
@@ -287,13 +296,26 @@ button {
   color: var(--scene-doux);
 }
 
+.lanceur {
+  --lanceur-ecart: var(--e-3);
+  --lanceur-tuile: calc((100% - 3 * var(--lanceur-ecart)) / 4);
+}
+.lanceur__titre.equipe {
+  margin-top: var(--e-6);
+}
+
 .lanceur__liste {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--e-3);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--lanceur-ecart);
+}
+.lanceur__liste > li {
+  flex: 0 0 var(--lanceur-tuile);
+  min-width: 0;
 }
 
 .lanceur__lien {
@@ -613,14 +635,19 @@ button {
     grid-template-columns: minmax(0, 1fr);
     gap: var(--e-10);
   }
-  .lanceur__liste {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
+  .lanceur {
+    --lanceur-tuile: calc((100% - 6 * var(--lanceur-ecart)) / 7);
+  }
+  /* Sept tuiles sur une ligne : « Prompthèque » y tient dès 820 px, et se coupe en dessous. */
+  .lanceur__lien {
+    padding-inline: var(--e-1);
+    font-size: 0.8125rem;
   }
 }
 
 @media (max-width: 720px) {
-  .lanceur__liste {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  .lanceur {
+    --lanceur-tuile: calc((100% - 3 * var(--lanceur-ecart)) / 4);
   }
   .grille {
     grid-template-columns: minmax(0, 1fr);
@@ -654,13 +681,13 @@ button {
     width: 24px;
     height: 24px;
   }
-  .lanceur__liste {
-    gap: var(--e-2);
+  .lanceur {
+    --lanceur-ecart: var(--e-2);
   }
   .lanceur__lien {
-    padding: var(--e-4) var(--e-1) var(--e-3);
+    padding: var(--e-4) 2px var(--e-3);
     gap: var(--e-2);
-    font-size: 0.8125rem;
+    font-size: var(--texte-xs);
   }
   .lanceur .pastille {
     width: 48px;

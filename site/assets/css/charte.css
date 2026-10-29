@@ -3,7 +3,8 @@
  * typography.css, spacing.css), reprise de l'Atelier d'exercices IA. Seul fichier où une couleur
  * est écrite.
  * Chaque outil garde sa couleur de l'arc-en-ciel, celle de son favicon : --outil-a → --outil-b
- * (dégradé), --outil-texte (texte, contraste AA sur la surface et sur --outil-pale).
+ * (dégradé), --outil-texte (texte, contraste AA sur la surface et sur --outil-pale). Les outils de
+ * l'équipe (design-skazy) ont tous le vert Skazy.
  */
 
 @font-face {
@@ -80,10 +81,18 @@
   --bleu-b: #135ae4;
   --bleu-texte: #1150c9;
   --bleu-pale: #e7effc;
+  --indigo-a: #8c8bff;
+  --indigo-b: #4a3ae6;
+  --indigo-texte: #4433d6;
+  --indigo-pale: #ecebfd;
   --violet-a: #d578f0;
   --violet-b: #701fe6;
   --violet-texte: #6a1dd9;
   --violet-pale: #f1e9fd;
+
+  /* Les outils de l'équipe : le vert Skazy de leur favicon */
+  --skazy-a: #6db898;
+  --skazy-b: #3d7a62;
 
   /* Typographie */
   --police: 'Georama', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
@@ -153,6 +162,8 @@
     --vert-pale: #193928;
     --bleu-texte: #29c9fa;
     --bleu-pale: #1c2c4a;
+    --indigo-texte: #a5a4ff;
+    --indigo-pale: #26244a;
     --violet-texte: #d991f2;
     --violet-pale: #311f4b;
   }
@@ -187,6 +198,8 @@
   --vert-pale: #193928;
   --bleu-texte: #29c9fa;
   --bleu-pale: #1c2c4a;
+  --indigo-texte: #a5a4ff;
+  --indigo-pale: #26244a;
   --violet-texte: #d991f2;
   --violet-pale: #311f4b;
 }
@@ -230,9 +243,21 @@
   --outil-texte: var(--bleu-texte);
   --outil-pale: var(--bleu-pale);
 }
+[data-couleur='indigo'] {
+  --outil-a: var(--indigo-a);
+  --outil-b: var(--indigo-b);
+  --outil-texte: var(--indigo-texte);
+  --outil-pale: var(--indigo-pale);
+}
 [data-couleur='violet'] {
   --outil-a: var(--violet-a);
   --outil-b: var(--violet-b);
   --outil-texte: var(--violet-texte);
   --outil-pale: var(--violet-pale);
+}
+[data-couleur='skazy'] {
+  --outil-a: var(--skazy-a);
+  --outil-b: var(--skazy-b);
+  --outil-texte: var(--primaire-texte);
+  --outil-pale: var(--primaire-pale);
 }
