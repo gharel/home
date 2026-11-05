@@ -8,7 +8,7 @@ La page d’accueil qui présente les huit outils de Skazy Formation, avec un ac
 | Quiz                   | orange    | Évaluer : quiz interactifs à projeter, façon Kahoot       | https://gharel.github.io/quiz/          |
 | Mini-jeux              | jaune     | Animer : mini-jeux pour réveiller une séance              | https://gharel.github.io/jeu-formation/ |
 | Atelier d’exercices IA | vert      | Pratiquer : près de 300 exercices d’IA par métier         | https://gharel.github.io/exercices-ia/  |
-| L’IA en schémas        | turquoise | Montrer : 42 planches de schémas à projeter               | https://gharel.github.io/schema-ia/     |
+| L’IA en schémas        | turquoise | Montrer : 43 planches de schémas à projeter               | https://gharel.github.io/schema-ia/     |
 | Permis IA              | bleu      | Comprendre : 9 fiches interactives en FALC                | https://gharel.github.io/simulateur-ia/ |
 | Prompthèque            | indigo    | S’inspirer : techniques de prompt prêtes à copier         | https://gharel.github.io/prompts/       |
 | Captif                 | violet    | Composer : copie numérique des évaluations, rendue en PDF | https://gharel.github.io/captif/        |
