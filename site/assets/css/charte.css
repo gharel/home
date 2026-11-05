@@ -2,7 +2,8 @@
  * Charte graphique Skazy Formation, d'après le design system Claude Design (tokens/colors.css,
  * typography.css, spacing.css), reprise de l'Atelier d'exercices IA. Seul fichier où une couleur
  * est écrite.
- * Chaque outil garde sa couleur de l'arc-en-ciel, celle de son favicon : --outil-a → --outil-b
+ * Chaque outil garde sa couleur de l'arc-en-ciel à huit teintes (rouge, orange, jaune, vert,
+ * turquoise, bleu, indigo, violet, toujours dans cet ordre), celle de son favicon : --outil-a → --outil-b
  * (dégradé), --outil-texte (texte, contraste AA sur la surface et sur --outil-pale). Les outils de
  * l'équipe (design-skazy) ont tous le vert Skazy.
  */
@@ -77,6 +78,10 @@
   --vert-b: #02934a;
   --vert-texte: #02753b;
   --vert-pale: #e6f4ed;
+  --turquoise-a: #2ee6c8;
+  --turquoise-b: #0a9396;
+  --turquoise-texte: #07787b;
+  --turquoise-pale: #e6f4f4;
   --bleu-a: #29c9fa;
   --bleu-b: #135ae4;
   --bleu-texte: #1150c9;
@@ -160,6 +165,8 @@
     --jaune-pale: #4d3b19;
     --vert-texte: #7ce963;
     --vert-pale: #193928;
+    --turquoise-texte: #2ee6c8;
+    --turquoise-pale: #173a3a;
     --bleu-texte: #29c9fa;
     --bleu-pale: #1c2c4a;
     --indigo-texte: #a5a4ff;
@@ -196,6 +203,8 @@
   --jaune-pale: #4d3b19;
   --vert-texte: #7ce963;
   --vert-pale: #193928;
+  --turquoise-texte: #2ee6c8;
+  --turquoise-pale: #173a3a;
   --bleu-texte: #29c9fa;
   --bleu-pale: #1c2c4a;
   --indigo-texte: #a5a4ff;
@@ -236,6 +245,12 @@
   --outil-b: var(--vert-b);
   --outil-texte: var(--vert-texte);
   --outil-pale: var(--vert-pale);
+}
+[data-couleur='turquoise'] {
+  --outil-a: var(--turquoise-a);
+  --outil-b: var(--turquoise-b);
+  --outil-texte: var(--turquoise-texte);
+  --outil-pale: var(--turquoise-pale);
 }
 [data-couleur='bleu'] {
   --outil-a: var(--bleu-a);

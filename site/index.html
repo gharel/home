@@ -6,7 +6,7 @@
     <title>Les outils · Skazy Formation</title>
     <meta
       name="description"
-      content="Les sept outils de Skazy Formation : Quiz, Mini-jeux, Vigie, Atelier d’exercices IA, Permis IA, Captif et Prompthèque."
+      content="Les huit outils de Skazy Formation : Vigie, Quiz, Mini-jeux, Atelier d’exercices IA, L’IA en schémas, Permis IA, Prompthèque et Captif."
     />
     <!-- Outils réservés aux stagiaires et à l'équipe : la page n'apparaît pas dans les moteurs de recherche. -->
     <meta name="robots" content="noindex" />
@@ -18,7 +18,7 @@
     <meta property="og:title" content="Les outils · Skazy Formation" />
     <meta
       property="og:description"
-      content="Quiz, Mini-jeux, Vigie, Atelier d’exercices IA, Permis IA, Captif et Prompthèque, au même endroit."
+      content="Vigie, Quiz, Mini-jeux, Atelier d’exercices IA, L’IA en schémas, Permis IA, Prompthèque et Captif, au même endroit."
     />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png" />
@@ -169,14 +169,27 @@
             </h1>
             <p class="heros__chapo">
               Animez vos séances avec le Quiz et les <span class="insecable">Mini-jeux</span>,
-              faites pratiquer l’IA avec l’Atelier d’exercices, le Permis IA et la Prompthèque,
-              faites composer vos évaluations sur Captif et suivez les appels d’offres avec Vigie.
+              faites pratiquer l’IA avec l’Atelier d’exercices et la Prompthèque, expliquez-la avec
+              le Permis IA et L’IA en schémas, faites composer vos évaluations sur Captif et suivez
+              les appels d’offres avec Vigie.
             </p>
           </div>
 
           <nav class="lanceur" aria-labelledby="titre-lanceur">
             <p class="lanceur__titre" id="titre-lanceur">Accès direct</p>
             <ul class="lanceur__liste">
+              <li>
+                <a class="lanceur__lien" href="https://gharel.github.io/scraping/" target="_top">
+                  <img
+                    class="pastille"
+                    src="assets/img/outils/vigie.svg"
+                    width="56"
+                    height="56"
+                    alt=""
+                  />
+                  Vigie
+                </a>
+              </li>
               <li>
                 <a class="lanceur__lien" href="https://gharel.github.io/quiz/" target="_top">
                   <img
@@ -206,18 +219,6 @@
                 </a>
               </li>
               <li>
-                <a class="lanceur__lien" href="https://gharel.github.io/scraping/" target="_top">
-                  <img
-                    class="pastille"
-                    src="assets/img/outils/vigie.svg"
-                    width="56"
-                    height="56"
-                    alt=""
-                  />
-                  Vigie
-                </a>
-              </li>
-              <li>
                 <a
                   class="lanceur__lien"
                   href="https://gharel.github.io/exercices-ia/"
@@ -231,6 +232,18 @@
                     alt=""
                   />
                   Exercices IA
+                </a>
+              </li>
+              <li>
+                <a class="lanceur__lien" href="https://gharel.github.io/schema-ia/" target="_top">
+                  <img
+                    class="pastille"
+                    src="assets/img/outils/schema-ia.svg"
+                    width="56"
+                    height="56"
+                    alt=""
+                  />
+                  L’IA en schémas
                 </a>
               </li>
               <li>
@@ -250,18 +263,6 @@
                 </a>
               </li>
               <li>
-                <a class="lanceur__lien" href="https://gharel.github.io/captif/" target="_top">
-                  <img
-                    class="pastille"
-                    src="assets/img/outils/captif.svg"
-                    width="56"
-                    height="56"
-                    alt=""
-                  />
-                  Captif
-                </a>
-              </li>
-              <li>
                 <a class="lanceur__lien" href="https://gharel.github.io/prompts/" target="_top">
                   <img
                     class="pastille"
@@ -271,6 +272,18 @@
                     alt=""
                   />
                   Promp&shy;thèque
+                </a>
+              </li>
+              <li>
+                <a class="lanceur__lien" href="https://gharel.github.io/captif/" target="_top">
+                  <img
+                    class="pastille"
+                    src="assets/img/outils/captif.svg"
+                    width="56"
+                    height="56"
+                    alt=""
+                  />
+                  Captif
                 </a>
               </li>
             </ul>
@@ -345,14 +358,72 @@
         <div class="outils__entete">
           <h2 id="titre-outils">Ce que fait chaque outil</h2>
           <p>
-            Chaque outil a sa couleur, celle de son icône&nbsp;: les sept forment l’arc-en-ciel de
-            Skazy Formation, du rouge du Quiz au violet de la Prompthèque.
+            Chaque outil a sa couleur, celle de son icône&nbsp;: les huit forment l’arc-en-ciel de
+            Skazy Formation, du rouge de la Vigie au violet de Captif.
           </p>
         </div>
 
         <ul class="grille">
           <li>
             <article class="carte" data-couleur="rouge">
+              <div class="carte__barre"></div>
+              <div class="carte__corps">
+                <div class="carte__haut">
+                  <img
+                    class="pastille"
+                    src="assets/img/outils/vigie.svg"
+                    width="52"
+                    height="52"
+                    alt=""
+                  />
+                  <span class="badge">Veiller</span>
+                </div>
+                <h3 class="carte__titre">
+                  <a class="carte__lien" href="https://gharel.github.io/scraping/" target="_top"
+                    >Vigie</a
+                  >
+                </h3>
+                <p class="carte__accroche">
+                  La veille des appels d’offres en
+                  <span class="insecable">Nouvelle-Calédonie</span>, à
+                  <span class="insecable">Wallis-et-Futuna</span>, en Polynésie française et au
+                  Vanuatu.
+                </p>
+                <ul class="carte__points">
+                  <li>
+                    <svg class="icone" aria-hidden="true"><use href="#i-check" /></svg>
+                    32&nbsp;sources surveillées toutes les 2&nbsp;heures
+                  </li>
+                  <li>
+                    <svg class="icone" aria-hidden="true"><use href="#i-check" /></svg>
+                    Nouveautés classées par catégorie, alertes par e-mail
+                  </li>
+                  <li>
+                    <svg class="icone" aria-hidden="true"><use href="#i-check" /></svg>
+                    Toute page web à surveiller, en plus des portails
+                  </li>
+                </ul>
+                <div class="carte__pied">
+                  <ul class="carte__infos">
+                    <li>
+                      <svg class="icone" aria-hidden="true"><use href="#i-briefcase" /></svg>
+                      Équipe Skazy Formation
+                    </li>
+                    <li>
+                      <svg class="icone" aria-hidden="true"><use href="#i-lock" /></svg>
+                      Protégé par mot de passe
+                    </li>
+                  </ul>
+                  <span class="carte__ouvrir" aria-hidden="true">
+                    Ouvrir <svg class="icone"><use href="#i-arrow-right" /></svg>
+                  </span>
+                </div>
+              </div>
+            </article>
+          </li>
+
+          <li>
+            <article class="carte" data-couleur="orange">
               <div class="carte__barre"></div>
               <div class="carte__corps">
                 <div class="carte__haut">
@@ -408,7 +479,7 @@
           </li>
 
           <li>
-            <article class="carte" data-couleur="orange">
+            <article class="carte" data-couleur="jaune">
               <div class="carte__barre"></div>
               <div class="carte__corps">
                 <div class="carte__haut">
@@ -467,64 +538,6 @@
           </li>
 
           <li>
-            <article class="carte" data-couleur="jaune">
-              <div class="carte__barre"></div>
-              <div class="carte__corps">
-                <div class="carte__haut">
-                  <img
-                    class="pastille"
-                    src="assets/img/outils/vigie.svg"
-                    width="52"
-                    height="52"
-                    alt=""
-                  />
-                  <span class="badge">Veiller</span>
-                </div>
-                <h3 class="carte__titre">
-                  <a class="carte__lien" href="https://gharel.github.io/scraping/" target="_top"
-                    >Vigie</a
-                  >
-                </h3>
-                <p class="carte__accroche">
-                  La veille des appels d’offres en
-                  <span class="insecable">Nouvelle-Calédonie</span>, à
-                  <span class="insecable">Wallis-et-Futuna</span>, en Polynésie française et au
-                  Vanuatu.
-                </p>
-                <ul class="carte__points">
-                  <li>
-                    <svg class="icone" aria-hidden="true"><use href="#i-check" /></svg>
-                    32&nbsp;sources surveillées toutes les 2&nbsp;heures
-                  </li>
-                  <li>
-                    <svg class="icone" aria-hidden="true"><use href="#i-check" /></svg>
-                    Nouveautés classées par catégorie, alertes par e-mail
-                  </li>
-                  <li>
-                    <svg class="icone" aria-hidden="true"><use href="#i-check" /></svg>
-                    Toute page web à surveiller, en plus des portails
-                  </li>
-                </ul>
-                <div class="carte__pied">
-                  <ul class="carte__infos">
-                    <li>
-                      <svg class="icone" aria-hidden="true"><use href="#i-briefcase" /></svg>
-                      Équipe Skazy Formation
-                    </li>
-                    <li>
-                      <svg class="icone" aria-hidden="true"><use href="#i-lock" /></svg>
-                      Protégé par mot de passe
-                    </li>
-                  </ul>
-                  <span class="carte__ouvrir" aria-hidden="true">
-                    Ouvrir <svg class="icone"><use href="#i-arrow-right" /></svg>
-                  </span>
-                </div>
-              </div>
-            </article>
-          </li>
-
-          <li>
             <article class="carte" data-couleur="vert">
               <div class="carte__barre"></div>
               <div class="carte__corps">
@@ -567,6 +580,62 @@
                     <li>
                       <svg class="icone" aria-hidden="true"><use href="#i-users" /></svg>
                       Formateur et apprenants
+                    </li>
+                    <li>
+                      <svg class="icone" aria-hidden="true"><use href="#i-lock-open" /></svg>
+                      Accès libre
+                    </li>
+                  </ul>
+                  <span class="carte__ouvrir" aria-hidden="true">
+                    Ouvrir <svg class="icone"><use href="#i-arrow-right" /></svg>
+                  </span>
+                </div>
+              </div>
+            </article>
+          </li>
+
+          <li>
+            <article class="carte" data-couleur="turquoise">
+              <div class="carte__barre"></div>
+              <div class="carte__corps">
+                <div class="carte__haut">
+                  <img
+                    class="pastille"
+                    src="assets/img/outils/schema-ia.svg"
+                    width="52"
+                    height="52"
+                    alt=""
+                  />
+                  <span class="badge">Montrer</span>
+                </div>
+                <h3 class="carte__titre">
+                  <a class="carte__lien" href="https://gharel.github.io/schema-ia/" target="_top"
+                    >L’IA en schémas</a
+                  >
+                </h3>
+                <p class="carte__accroche">
+                  Le support à projeter en séance&nbsp;: des schémas et des graphiques, presque sans
+                  texte, pour expliquer l’IA.
+                </p>
+                <ul class="carte__points">
+                  <li>
+                    <svg class="icone" aria-hidden="true"><use href="#i-check" /></svg>
+                    39&nbsp;planches à projeter, une notion par schéma
+                  </li>
+                  <li>
+                    <svg class="icone" aria-hidden="true"><use href="#i-check" /></svg>
+                    Tokens, mémoire, biais, agents, coûts
+                  </li>
+                  <li>
+                    <svg class="icone" aria-hidden="true"><use href="#i-check" /></svg>
+                    Projection au clavier, parcours express
+                  </li>
+                </ul>
+                <div class="carte__pied">
+                  <ul class="carte__infos">
+                    <li>
+                      <svg class="icone" aria-hidden="true"><use href="#i-users" /></svg>
+                      Formateur
                     </li>
                     <li>
                       <svg class="icone" aria-hidden="true"><use href="#i-lock-open" /></svg>
@@ -647,62 +716,6 @@
                 <div class="carte__haut">
                   <img
                     class="pastille"
-                    src="assets/img/outils/captif.svg"
-                    width="52"
-                    height="52"
-                    alt=""
-                  />
-                  <span class="badge">Composer</span>
-                </div>
-                <h3 class="carte__titre">
-                  <a class="carte__lien" href="https://gharel.github.io/captif/" target="_top"
-                    >Captif</a
-                  >
-                </h3>
-                <p class="carte__accroche">
-                  Une copie numérique pour les évaluations&nbsp;: du texte et des schémas sur des
-                  feuilles A4, rendus en PDF à la fin de l’épreuve.
-                </p>
-                <ul class="carte__points">
-                  <li>
-                    <svg class="icone" aria-hidden="true"><use href="#i-check" /></svg>
-                    79&nbsp;formes UML et BDD, blocs de code colorés dans 13&nbsp;langages
-                  </li>
-                  <li>
-                    <svg class="icone" aria-hidden="true"><use href="#i-check" /></svg>
-                    Plein écran suivi&nbsp;: chaque sortie de la fenêtre est notée au journal
-                  </li>
-                  <li>
-                    <svg class="icone" aria-hidden="true"><use href="#i-check" /></svg>
-                    Copie et bilan imprimés en PDF, sans compte ni serveur
-                  </li>
-                </ul>
-                <div class="carte__pied">
-                  <ul class="carte__infos">
-                    <li>
-                      <svg class="icone" aria-hidden="true"><use href="#i-user-graduate" /></svg>
-                      Apprenants, pendant l’évaluation
-                    </li>
-                    <li>
-                      <svg class="icone" aria-hidden="true"><use href="#i-lock-open" /></svg>
-                      Accès libre
-                    </li>
-                  </ul>
-                  <span class="carte__ouvrir" aria-hidden="true">
-                    Ouvrir <svg class="icone"><use href="#i-arrow-right" /></svg>
-                  </span>
-                </div>
-              </div>
-            </article>
-          </li>
-
-          <li>
-            <article class="carte" data-couleur="violet">
-              <div class="carte__barre"></div>
-              <div class="carte__corps">
-                <div class="carte__haut">
-                  <img
-                    class="pastille"
                     src="assets/img/outils/promptheque.svg"
                     width="52"
                     height="52"
@@ -738,6 +751,62 @@
                     <li>
                       <svg class="icone" aria-hidden="true"><use href="#i-users" /></svg>
                       Formateur et apprenants
+                    </li>
+                    <li>
+                      <svg class="icone" aria-hidden="true"><use href="#i-lock-open" /></svg>
+                      Accès libre
+                    </li>
+                  </ul>
+                  <span class="carte__ouvrir" aria-hidden="true">
+                    Ouvrir <svg class="icone"><use href="#i-arrow-right" /></svg>
+                  </span>
+                </div>
+              </div>
+            </article>
+          </li>
+
+          <li>
+            <article class="carte" data-couleur="violet">
+              <div class="carte__barre"></div>
+              <div class="carte__corps">
+                <div class="carte__haut">
+                  <img
+                    class="pastille"
+                    src="assets/img/outils/captif.svg"
+                    width="52"
+                    height="52"
+                    alt=""
+                  />
+                  <span class="badge">Composer</span>
+                </div>
+                <h3 class="carte__titre">
+                  <a class="carte__lien" href="https://gharel.github.io/captif/" target="_top"
+                    >Captif</a
+                  >
+                </h3>
+                <p class="carte__accroche">
+                  Une copie numérique pour les évaluations&nbsp;: du texte et des schémas sur des
+                  feuilles A4, rendus en PDF à la fin de l’épreuve.
+                </p>
+                <ul class="carte__points">
+                  <li>
+                    <svg class="icone" aria-hidden="true"><use href="#i-check" /></svg>
+                    79&nbsp;formes UML et BDD, blocs de code colorés dans 13&nbsp;langages
+                  </li>
+                  <li>
+                    <svg class="icone" aria-hidden="true"><use href="#i-check" /></svg>
+                    Plein écran suivi&nbsp;: chaque sortie de la fenêtre est notée au journal
+                  </li>
+                  <li>
+                    <svg class="icone" aria-hidden="true"><use href="#i-check" /></svg>
+                    Copie et bilan imprimés en PDF, sans compte ni serveur
+                  </li>
+                </ul>
+                <div class="carte__pied">
+                  <ul class="carte__infos">
+                    <li>
+                      <svg class="icone" aria-hidden="true"><use href="#i-user-graduate" /></svg>
+                      Apprenants, pendant l’évaluation
                     </li>
                     <li>
                       <svg class="icone" aria-hidden="true"><use href="#i-lock-open" /></svg>

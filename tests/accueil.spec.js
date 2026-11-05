@@ -1,21 +1,37 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
-// Les sept outils, dans l'ordre de l'arc-en-ciel Skazy Formation.
+// Les huit outils, dans l'ordre de l'arc-en-ciel Skazy Formation.
 const OUTILS = [
-  { nom: 'Quiz', couleur: 'rouge', url: 'https://gharel.github.io/quiz/', icone: 'quiz.svg' },
+  {
+    nom: 'Vigie',
+    couleur: 'rouge',
+    url: 'https://gharel.github.io/scraping/',
+    icone: 'vigie.svg',
+  },
+  {
+    nom: 'Quiz',
+    couleur: 'orange',
+    url: 'https://gharel.github.io/quiz/',
+    icone: 'quiz.svg',
+  },
   {
     nom: 'Mini-jeux',
-    couleur: 'orange',
+    couleur: 'jaune',
     url: 'https://gharel.github.io/jeu-formation/',
     icone: 'mini-jeux.svg',
   },
-  { nom: 'Vigie', couleur: 'jaune', url: 'https://gharel.github.io/scraping/', icone: 'vigie.svg' },
   {
     nom: 'Atelier d’exercices IA',
     couleur: 'vert',
     url: 'https://gharel.github.io/exercices-ia/',
     icone: 'atelier-exercices-ia.svg',
+  },
+  {
+    nom: 'L’IA en schémas',
+    couleur: 'turquoise',
+    url: 'https://gharel.github.io/schema-ia/',
+    icone: 'schema-ia.svg',
   },
   {
     nom: 'Permis IA',
@@ -24,16 +40,16 @@ const OUTILS = [
     icone: 'permis-ia.svg',
   },
   {
-    nom: 'Captif',
-    couleur: 'indigo',
-    url: 'https://gharel.github.io/captif/',
-    icone: 'captif.svg',
-  },
-  {
     nom: 'Prompthèque',
-    couleur: 'violet',
+    couleur: 'indigo',
     url: 'https://gharel.github.io/prompts/',
     icone: 'promptheque.svg',
+  },
+  {
+    nom: 'Captif',
+    couleur: 'violet',
+    url: 'https://gharel.github.io/captif/',
+    icone: 'captif.svg',
   },
 ];
 
@@ -132,7 +148,7 @@ test('le bouton « Remonter en haut » apparaît après défilement et ramène e
   await expect(bouton).toBeHidden();
 });
 
-test('les sept outils, dans l’ordre de l’arc-en-ciel, avec leur favicon', async ({ page }) => {
+test('les huit outils, dans l’ordre de l’arc-en-ciel, avec leur favicon', async ({ page }) => {
   await ouvrir(page);
   const cartes = page.locator('.carte:visible');
   await expect(cartes).toHaveCount(OUTILS.length);
