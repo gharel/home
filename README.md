@@ -8,7 +8,7 @@ La page d’accueil qui présente les sept outils de Skazy Formation, avec un ac
 | Mini-jeux              | orange  | Animer : mini-jeux pour réveiller une séance              | https://gharel.github.io/jeu-formation/ |
 | Vigie                  | jaune   | Veiller : appels d’offres de Nouvelle-Calédonie et autour | https://gharel.github.io/scraping/      |
 | Atelier d’exercices IA | vert    | Pratiquer : près de 300 exercices d’IA par métier         | https://gharel.github.io/exercices-ia/  |
-| Comprendre l’IA        | bleu    | Comprendre : 9 fiches interactives en FALC                | https://gharel.github.io/simulateur-ia/ |
+| Permis IA              | bleu    | Comprendre : 9 fiches interactives en FALC                | https://gharel.github.io/simulateur-ia/ |
 | Captif                 | indigo  | Composer : copie numérique des évaluations, rendue en PDF | https://gharel.github.io/captif/        |
 | Prompthèque            | violet  | S’inspirer : techniques de prompt prêtes à copier         | https://gharel.github.io/prompts/       |
 

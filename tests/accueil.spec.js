@@ -18,10 +18,10 @@ const OUTILS = [
     icone: 'atelier-exercices-ia.svg',
   },
   {
-    nom: 'Comprendre l’IA',
+    nom: 'Permis IA',
     couleur: 'bleu',
     url: 'https://gharel.github.io/simulateur-ia/',
-    icone: 'comprendre-ia.svg',
+    icone: 'permis-ia.svg',
   },
   {
     nom: 'Captif',
