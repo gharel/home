@@ -67,7 +67,7 @@ const EQUIPE = [
   },
   {
     nom: 'Tableau des formations',
-    url: 'https://claude.ai/artifact/LiBVCjxzqKypZdWEmLk2ZG',
+    url: 'https://script.google.com/a/macros/skazy.nc/s/AKfycbzhVk2jtNeQ7s1MDuK6be3mWp7k-XWppNKf4MOPENnsbb42vfil6VnYyIeiICt0FuV3/exec',
     icone: 'tableau-formations.svg',
   },
   { nom: 'Skills IA', url: 'https://gharel.github.io/skills/', icone: 'skills-ia.svg' },
