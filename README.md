@@ -17,12 +17,13 @@ La page d’accueil qui présente les huit outils de Skazy Formation, avec un ac
 
 Dans le nouvel onglet de l’extension (dossier `www/extension`, qui ouvre la page avec `?equipe`), une partie « Pour l’équipe » s’ajoute, en vert Skazy :
 
-| Outil               | Pour quoi faire                                       | Adresse                                         |
-| ------------------- | ----------------------------------------------------- | ----------------------------------------------- |
-| Dashboard Formation | Piloter : sessions, documents, Qualiopi (Apps Script) | déploiement `/exec` du projet `gas/Claude Code` |
-| Mini CRM            | Relancer : brouillons Gmail des relances clients      | déploiement de test `/dev` du projet `my-crm`   |
-| Skills IA           | Produire : plan, support et quiz avec les assistants  | https://gharel.github.io/skills/                |
-| Design Skazy        | Concevoir : le design system (dépôt privé)            | https://github.com/gharel/design-skazy          |
+| Outil                  | Pour quoi faire                                               | Adresse                                                                                                      |
+| ---------------------- | ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| Dashboard Formation    | Piloter : sessions, documents, Qualiopi (Apps Script)         | déploiement `/exec` du projet `gas/Claude Code`                                                              |
+| Mini CRM               | Relancer : brouillons Gmail des relances clients              | déploiement de test `/dev` du projet `my-crm`                                                                |
+| Tableau des formations | Mesurer : activité, répartition et satisfaction (Apps Script) | provisoirement une copie figée sur claude.ai ; à terme le déploiement `/exec` du projet `tableau-formations` |
+| Skills IA              | Produire : plan, support et quiz avec les assistants          | https://gharel.github.io/skills/                                                                             |
+| Design Skazy           | Concevoir : le design system (dépôt privé)                    | https://github.com/gharel/design-skazy                                                                       |
 
 Elle est masquée, pas secrète : ses liens sont dans le code de la page, et ces outils demandent le compte de Guillaume.
 

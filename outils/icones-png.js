@@ -2,8 +2,8 @@
  * npm run icones : dérive de site/favicon.svg les icônes PNG des navigateurs qui ne lisent pas le
  * SVG (favicon-32.png) et l'icône de l'écran d'accueil d'iOS (apple-touch-icon.png, 180 px, fond
  * blanc plein : iOS arrondit lui-même les coins).
- * Il dérive aussi le favicon PNG des deux applications Apps Script de l'équipe (Dashboard
- * Formation, Mini CRM) : Apps Script ne sert pas de fichier, leur doGet() pointe vers ces PNG
+ * Il dérive aussi le favicon PNG des applications Apps Script de l'équipe (Dashboard
+ * Formation, Mini CRM, Tableau des formations) : Apps Script ne sert pas de fichier, leur doGet() pointe vers ces PNG
  * publiés ici (setFaviconUrl).
  */
 import { readFileSync } from 'node:fs';
@@ -28,6 +28,7 @@ for (const [svg, taille, nom, transparent] of [
   [pourIos, 180, 'apple-touch-icon.png', false],
   [outil('dashboard-formation'), 64, 'assets/img/outils/dashboard-formation.png', true],
   [outil('mini-crm'), 64, 'assets/img/outils/mini-crm.png', true],
+  [outil('tableau-formations'), 64, 'assets/img/outils/tableau-formations.png', true],
 ]) {
   await page.setViewportSize({ width: taille, height: taille });
   const source = `data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}`;

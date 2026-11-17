@@ -65,6 +65,11 @@ const EQUIPE = [
     url: 'https://script.google.com/a/macros/skazy.nc/s/AKfycbwREjH5R29EPxQaIabmkPdqyDEFW7JiAaUVD-hmNCU/dev',
     icone: 'mini-crm.svg',
   },
+  {
+    nom: 'Tableau des formations',
+    url: 'https://claude.ai/artifact/LiBVCjxzqKypZdWEmLk2ZG',
+    icone: 'tableau-formations.svg',
+  },
   { nom: 'Skills IA', url: 'https://gharel.github.io/skills/', icone: 'skills-ia.svg' },
   {
     nom: 'Design Skazy',
@@ -220,6 +225,7 @@ test('toutes les images se chargent', async ({ page }) => {
     // Favicons des applications Apps Script (setFaviconUrl dans leur doGet()).
     'assets/img/outils/dashboard-formation.png',
     'assets/img/outils/mini-crm.png',
+    'assets/img/outils/tableau-formations.png',
   ]) {
     expect((await page.request.get(chemin)).ok(), chemin).toBe(true);
   }
