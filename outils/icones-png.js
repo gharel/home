@@ -3,7 +3,7 @@
  * SVG (favicon-32.png) et l'icône de l'écran d'accueil d'iOS (apple-touch-icon.png, 180 px, fond
  * blanc plein : iOS arrondit lui-même les coins).
  * Il dérive aussi le favicon PNG des applications Apps Script de l'équipe (Dashboard
- * Formation, Mini CRM, Tableau des formations) : Apps Script ne sert pas de fichier, leur doGet() pointe vers ces PNG
+ * Formation, Mini CRM, Suivi des formations) : Apps Script ne sert pas de fichier, leur doGet() pointe vers ces PNG
  * publiés ici (setFaviconUrl).
  */
 import { readFileSync } from 'node:fs';

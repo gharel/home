@@ -66,7 +66,7 @@ const EQUIPE = [
     icone: 'mini-crm.svg',
   },
   {
-    nom: 'Tableau des formations',
+    nom: 'Suivi des formations',
     url: 'https://script.google.com/a/macros/skazy.nc/s/AKfycbzhVk2jtNeQ7s1MDuK6be3mWp7k-XWppNKf4MOPENnsbb42vfil6VnYyIeiICt0FuV3/exec',
     icone: 'tableau-formations.svg',
   },
