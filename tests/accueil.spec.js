@@ -61,21 +61,21 @@ const EQUIPE = [
     icone: 'dashboard-formation.svg',
   },
   {
-    nom: 'Mini CRM',
-    url: 'https://script.google.com/a/macros/skazy.nc/s/AKfycbwREjH5R29EPxQaIabmkPdqyDEFW7JiAaUVD-hmNCU/dev',
-    icone: 'mini-crm.svg',
-  },
-  {
     nom: 'Suivi des formations',
     url: 'https://script.google.com/a/macros/skazy.nc/s/AKfycbzhVk2jtNeQ7s1MDuK6be3mWp7k-XWppNKf4MOPENnsbb42vfil6VnYyIeiICt0FuV3/exec',
     icone: 'tableau-formations.svg',
   },
-  { nom: 'Skills IA', url: 'https://gharel.github.io/skills/', icone: 'skills-ia.svg' },
   {
     nom: 'Design Skazy',
     url: 'https://github.com/gharel/design-skazy',
     icone: 'design-skazy.svg',
   },
+  {
+    nom: 'Mini CRM',
+    url: 'https://script.google.com/a/macros/skazy.nc/s/AKfycbwREjH5R29EPxQaIabmkPdqyDEFW7JiAaUVD-hmNCU/dev',
+    icone: 'mini-crm.svg',
+  },
+  { nom: 'Skills IA', url: 'https://gharel.github.io/skills/', icone: 'skills-ia.svg' },
 ];
 
 const ECRANS = [
