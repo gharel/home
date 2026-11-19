@@ -6,7 +6,7 @@ const OUTILS = [
   {
     nom: 'Vigie',
     couleur: 'rouge',
-    url: 'https://gharel.github.io/scraping/',
+    url: 'https://gharel.github.io/vigie/',
     icone: 'vigie.svg',
   },
   {
@@ -18,7 +18,7 @@ const OUTILS = [
   {
     nom: 'Mini-jeux',
     couleur: 'jaune',
-    url: 'https://gharel.github.io/jeu-formation/',
+    url: 'https://gharel.github.io/jeux/',
     icone: 'mini-jeux.svg',
   },
   {
@@ -30,13 +30,13 @@ const OUTILS = [
   {
     nom: 'L’IA en schémas',
     couleur: 'turquoise',
-    url: 'https://gharel.github.io/schema-ia/',
+    url: 'https://gharel.github.io/schemas-ia/',
     icone: 'schema-ia.svg',
   },
   {
     nom: 'Permis IA',
     couleur: 'bleu',
-    url: 'https://gharel.github.io/simulateur-ia/',
+    url: 'https://gharel.github.io/permis-ia/',
     icone: 'permis-ia.svg',
   },
   {

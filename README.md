@@ -2,28 +2,28 @@
 
 La page d’accueil qui présente les huit outils de Skazy Formation, avec un accès direct à chacun :
 
-| Outil                  | Couleur   | Pour quoi faire                                           | Adresse                                 |
-| ---------------------- | --------- | --------------------------------------------------------- | --------------------------------------- |
-| Vigie                  | rouge     | Veiller : appels d’offres de Nouvelle-Calédonie et autour | https://gharel.github.io/scraping/      |
-| Quiz                   | orange    | Évaluer : quiz interactifs à projeter, façon Kahoot       | https://gharel.github.io/quiz/          |
-| Mini-jeux              | jaune     | Animer : mini-jeux pour réveiller une séance              | https://gharel.github.io/jeu-formation/ |
-| Atelier d’exercices IA | vert      | Pratiquer : près de 300 exercices d’IA par métier         | https://gharel.github.io/exercices-ia/  |
-| L’IA en schémas        | turquoise | Montrer : 43 planches de schémas à projeter               | https://gharel.github.io/schema-ia/     |
-| Permis IA              | bleu      | Comprendre : 9 fiches interactives en FALC                | https://gharel.github.io/simulateur-ia/ |
-| Prompthèque            | indigo    | S’inspirer : techniques de prompt prêtes à copier         | https://gharel.github.io/prompts/       |
-| Captif                 | violet    | Composer : copie numérique des évaluations, rendue en PDF | https://gharel.github.io/captif/        |
+| Outil                  | Couleur   | Pour quoi faire                                           | Adresse                                |
+| ---------------------- | --------- | --------------------------------------------------------- | -------------------------------------- |
+| Vigie                  | rouge     | Veiller : appels d’offres de Nouvelle-Calédonie et autour | https://gharel.github.io/vigie/        |
+| Quiz                   | orange    | Évaluer : quiz interactifs à projeter, façon Kahoot       | https://gharel.github.io/quiz/         |
+| Mini-jeux              | jaune     | Animer : mini-jeux pour réveiller une séance              | https://gharel.github.io/jeux/         |
+| Atelier d’exercices IA | vert      | Pratiquer : près de 300 exercices d’IA par métier         | https://gharel.github.io/exercices-ia/ |
+| L’IA en schémas        | turquoise | Montrer : 43 planches de schémas à projeter               | https://gharel.github.io/schemas-ia/   |
+| Permis IA              | bleu      | Comprendre : 9 fiches interactives en FALC                | https://gharel.github.io/permis-ia/    |
+| Prompthèque            | indigo    | S’inspirer : techniques de prompt prêtes à copier         | https://gharel.github.io/prompts/      |
+| Captif                 | violet    | Composer : copie numérique des évaluations, rendue en PDF | https://gharel.github.io/captif/       |
 
 **En ligne : https://gharel.github.io/home/**
 
 Dans le nouvel onglet de l’extension (dossier `www/extension`, qui ouvre la page avec `?equipe`), une partie « Pour l’équipe » s’ajoute, en vert Skazy :
 
-| Outil                | Pour quoi faire                                              | Adresse                                            |
-| -------------------- | ------------------------------------------------------------ | -------------------------------------------------- |
-| Dashboard Formation  | Piloter : sessions, documents, Qualiopi (Apps Script)        | déploiement `/exec` du projet `gas/Claude Code`    |
-| Suivi des formations | Mesurer : formations, finances et satisfaction (Apps Script) | déploiement `/exec` du projet `tableau-formations` |
-| Design Skazy         | Concevoir : le design system (dépôt privé)                   | https://github.com/gharel/design-skazy             |
-| Mini CRM             | Relancer : brouillons Gmail des relances clients             | déploiement de test `/dev` du projet `my-crm`      |
-| Skills IA            | Produire : plan, support et quiz avec les assistants         | https://gharel.github.io/skills/                   |
+| Outil                | Pour quoi faire                                              | Adresse                                    |
+| -------------------- | ------------------------------------------------------------ | ------------------------------------------ |
+| Dashboard Formation  | Piloter : sessions, documents, Qualiopi (Apps Script)        | déploiement `/exec` du projet `dashboard`  |
+| Suivi des formations | Mesurer : formations, finances et satisfaction (Apps Script) | déploiement `/exec` du projet `suivi`      |
+| Design Skazy         | Concevoir : le design system (dépôt privé)                   | https://github.com/gharel/design-skazy     |
+| Mini CRM             | Relancer : brouillons Gmail des relances clients             | déploiement de test `/dev` du projet `crm` |
+| Skills IA            | Produire : plan, support et quiz avec les assistants         | https://gharel.github.io/skills/           |
 
 Elle est masquée, pas secrète : ses liens sont dans le code de la page, et ces outils demandent le compte de Guillaume.
 
